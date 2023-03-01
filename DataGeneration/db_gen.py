@@ -128,6 +128,7 @@ Menu:       list[MenuItem]
 Recipes:    list[Recipe]
 Supplies:   list[Supply]
 DailyInv:   list[Inventory] = []
+PrevDayInv:   list[Inventory] = []
 NAMES:      list[str] = ["Weston", "Cole", "Ryan", "Logan", "Prof Ritchie"]
 GAMEDAYS:   list[datetime.date] = [datetime.date(2022, 9, 10), datetime.date(2022, 9, 17)]
 order_count: int = 0
@@ -156,10 +157,10 @@ def generateSingleOrder(date: datetime.date, time: str) -> float:
     items:  dict[str, int] = {}
     for entry in range(random.randint(1, 5)):   # random number of order entries
         item = random.choice(Menu)      # random item on the menu
-        if (item.combo):
-            items.update({"Waffle Potato Fries - Medium":1})
-            items.update({"Soft Drinks Medium":1})
         number = random.randint(1,4)    # how many of that item
+        if (item.combo):
+            items.update({"Waffle Potato Fries - Medium":number})
+            items.update({"Soft Drinks Medium":number})
         total += (item.price * number)
         items.update({item.item_name: number})
     items.update({"To Go Bag":1})
@@ -170,18 +171,20 @@ def generateSingleOrder(date: datetime.date, time: str) -> float:
 
 # Simulate a day, return the total profit
 def simulateDay(date: datetime.date, min_profit: float) -> float:
-    global Supplies, DailyInv, DAILY_INVENTORY_FILE
+    global Supplies, DailyInv, DAILY_INVENTORY_FILE, PrevDayInv, Kiosks
     DailyInv = list(map(lambda s : Inventory(str(date), s.ingredient, s.restock_quantity, 0.0, s.restock_quantity, 0.0), Supplies))
-
+    for kiosk in Kiosks:
+        kiosk.curr_order_num = 0
+    
     min_profit += random.randint(0, int(min_profit / 10) + 1)   # random amount over the minimum
     profit: float = 0.0
     dateandtime = datetime.datetime(date.year, date.month, date.day, 8, 00) # 8:00 am
     while (profit < min_profit):
         dateandtime += datetime.timedelta(seconds=35)
         profit += generateSingleOrder(date, str(dateandtime.time()))
-    fout = open(DAILY_INVENTORY_FILE, 'w')
-    fout.writelines(list(map(lambda s: str(s) + '\n', DailyInv)))
-    fout.close()
+    w_daily_inventory = open(DAILY_INVENTORY_FILE, 'a')
+    w_daily_inventory.writelines(list(map(lambda s: str(s) + '\n', DailyInv)))
+    w_daily_inventory.close()
     DailyInv = []
 
     return profit
