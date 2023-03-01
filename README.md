@@ -1,6 +1,5 @@
-# csce331-cfa-pos-system
-# Project 2 Phase 2 Iteration
-# Creating 52 weeks worth of data
+# csce331-cfa-pos-system Project 2 Phase 2 Iteration
+## Creating 52 weeks worth of data
 In phase 2 we were challenged to polulate our databases over a 52 week period, generating over $1,000,000 in revenue at the Chickfala. In addition we needed to create 15 different SQL queries that will demonstate that our data is sucessfully populated and meets necessary requirements.
 
 ## Task Breakdown
