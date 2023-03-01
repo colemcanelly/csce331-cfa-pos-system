@@ -1,0 +1,109 @@
+ChickFil-A Chicken Sandwich,FALSE,3.35,chickfila_chicken_sandwich.jpg
+ChickFil-A Chicken Sandwich Combo,TRUE,6.55,chickfila_chicken_sandwich_combo.jpg
+ChickFil-A Chicken Deluxe Sandwich,FALSE,4.02,chickfila_chicken_deluxe_sandwich.jpg
+ChickFil-A Chicken Deluxe Sandwich Combo,TRUE,7.21,chickfila_chicken_deluxe_sandwich_combo.jpg
+Spicy Chicken Sandwich,FALSE,3.62,spicy_chicken_sandwich.jpg
+Spicy Chicken Sandwich Combo,TRUE,6.81,spicy_chicken_sandwich_combo.jpg
+Spicy Chicken Deluxe Sandwich,FALSE,4.28,spicy_chicken_deluxe_sandwich.jpg
+Spicy Chicken Deluxe Sandwich Combo,TRUE,7.47,spicy_chicken_deluxe_sandwich_combo.jpg
+ChickFil-A Nuggets 8Pc,FALSE,3.35,chickfila_nuggets_8pc.jpg
+ChickFil-A Nuggets 12Pc,FALSE,4.9,chickfila_nuggets_12pc.jpg
+ChickFil-A Nuggets Combo 8Pc,TRUE,6.55,chickfila_nuggets_combo_8pc.jpg
+ChickFil-A Nuggets Combo 12Pc,TRUE,9.45,chickfila_nuggets_combo_12pc.jpg
+ChickFil-A Nuggets Grilled 8Pc,FALSE,4.24,chickfila_grilled_nuggets_8pc.jpg
+ChickFil-A Nuggets Grilled 12Pc,FALSE,6.33,chickfila_grilled_nuggets_12pc.jpg
+ChickFil-A Nuggets Grilled Combo 8Pc,TRUE,7.43,chickfila_grilled_nuggets_combo_8pc.jpg
+ChickFil-A Nuggets Grilled Combo 12Pc,TRUE,9.45,chickfila_grilled_nuggets_combo_12pc.jpg
+Chicken Strips 3Pc,FALSE,3.69,chickn_strips_3pc.jpg
+Chickrn Strips 4Pc,FALSE,4.83,chickn_strips_4pc.jpg
+Chicken Strips Combo 3Pc,TRUE,6.88,chickn_strips_combo_3pc.jpg
+Chicken Strips Combo 4Pc,TRUE,7.98,chickn_strips_combo_4pc.jpg
+Grilled Chicken Sandwich,FALSE,4.83,grilled_chicken_sandwich.jpg
+Grilled Chicken Sandwich Combo,FALSE,7.91,grilled_chicken_sandwich_combo.jpg
+Grilled Chicken Club Sandwich,FALSE,6.15,grilled_chicken_club_sandwich.jpg
+Grilled Chicken Club Sandwich Combo,TRUE,9.23,grilled_chicken_club_sandwich_combo.jpg
+Chicken Salad Sandwich,FALSE,4.39,chicken_salad_sandwich.jpg
+Chicken Salad Sandwich Combo,TRUE,7.47,chicken_salad_sandwich_combo.jpg
+Grilled Chicken Cool Wrap,FALSE,5.71,grilled_chicken_cool_wrap.jpg
+Grilled Chicken Cool Wrap Combo,TRUE,8.97,grilled_chicken_cool_wrap_combo.jpg
+Waffle Potato Fries - Small,FALSE,1.71,wafflepotatofries_small.jpg
+Waffle Potato Fries - Medium,FALSE,1.81,wafflepotatofries_medium.jpg
+Waffle Potato Fries - Large,FALSE,2.04,wafflepotatofries_large.jpg
+Cobb Salad,FALSE,7.91,cobbsalad.jpg
+Grilled Market Salad,FALSE,7.91,grilledmarketsalad.jpg
+Grilled Market Salad With No Chicken,FALSE,6.81,grilledmarketsalad_nochicken.jpg
+Grilled Market Salad With ChickFil-A Filet,FALSE,9.01,grilledmarketsalad_chickfilafilet.jpg
+Grilled Market Salad With ChickNStrips,FALSE,9.01,grilledmarketsalad_chicknstrips.jpg
+Grilled Market Salad With Grilled Nuggets,FALSE,9.01,grilledmarketsalad_grillednuggets.jpg
+Grilled Market Salad With Nuggets,FALSE,9.01,grilledmarketsalad_nuggets.jpg
+Grilled Market Salad With Spicy Filet,FALSE,9.01,grilledmarketsalad_spicyfilet.jpg
+Chick-fil-A Chicken Biscuit,FALSE,2.41,chick_fil_a_chicken_biscuit.jpg
+Chick-fil-A Chicken Biscuit Combo,TRUE,4.94,chick_fil_a_chicken_biscuit_combo.jpg
+Chick-n-Minis 3 Pc.,FALSE,2.52,chick_n_minis_3pc.jpg
+Chick-n-Minis 4 Pc.,FALSE,3.29,chick_n_minis_4pc.jpg
+Chick-n-Minis Combo 3 Pc.,TRUE,5.12,chick_n_minis_combo_3pc.jpg
+Chick-n-Minis Combo 4Pc.,TRUE,5.82,chick_n_minis_combo_4pc.jpg
+Buttered Biscuit,FALSE,0.98,buttered_biscuit.jpg
+Bacon,FALSE,2.85,bacon_egg_cheese_biscuit.jpg
+Bacon,FALSE,5.45,bacon_egg_cheese_biscuit_combo.jpg
+Spicy Chicken Biscuit,FALSE,2.59,spicy_chicken_biscuit.jpg
+Spicy Chicken Biscuit Combo,TRUE,5.12,spicy_chicken_biscuit_combo.jpg
+Breakfast Burrito Chicken,FALSE,2.81,breakfast_burrito_chicken.jpg
+Breakfast Burrito Chicken Combo,TRUE,5.33,breakfast_burrito_chicken_combo.jpg
+Sausage Egg & Cheese Biscuit,FALSE,2.85,sausage_egg_cheese_biscuit.jpg
+Sausage Egg & Cheese Biscuit Combo,TRUE,5.45,sausage_egg_cheese_biscuit_combo.jpg
+Chicken Egg & Cheese Bagel,FALSE,3.73,chicken_egg_cheese_bagel.jpg
+Chicke Egg & Cheese Bagel Combo,TRUE,6.22,chicken_egg_cheese_bagel_combo.jpg
+Oatmeal,FALSE,2.96,oatmeal.jpg
+Oatmeal & Fruit Combo,TRUE,7.36,oatmeal_fruit_combo.jpg
+Fruit Cup Small,FALSE,2.25,fruit_cup_small.jpg
+Fruit Cup Medium,FALSE,3.03,fruit_cup_medium.jpg
+Fruit Cup Large,FALSE,4.68,fruit_cup_large.jpg
+Plain Bagel,FALSE,1.42,plain_bagel.jpg
+Bagel with Cream Cheese,FALSE,1.97,bagel_with_cream_cheese.jpg
+Hash Browns,FALSE,1.09,hash_browns.jpg
+Yogurt Parfait,FALSE,2.7,yogurt_parfait.jpg
+Cinnamon Cluster,FALSE,2.15,cinnamon_cluster.jpg
+Fresh-Squeezed Lemonade Regular Small,FALSE,1.71,fresh_squeezed_lemonade_small.jpg
+Fresh-Squeezed Lemonade Regular Medium,FALSE,1.97,fresh_squeezed_lemonade_medium.jpg
+Fresh-Squeezed Lemonade Regular Large,FALSE,2.3,fresh_squeezed_lemonade_large.jpg
+Fresh-Squeezed Lemonade Diet Small,FALSE,1.71,fresh_squeezed_lemonade_small.jpg
+Fresh-Squeezed Lemonade Diet Medium,FALSE,1.97,fresh_squeezed_lemonade_medium.jpg
+Fresh-Squeezed Lemonade Diet Large,FALSE,2.3,fresh_squeezed_lemonade_large.jpg
+Iced Tea Unsweetened Small,FALSE,1.49,iced_tea_small.jpg
+Iced Tea Unsweetened Medium,FALSE,1.75,iced_tea_medium.jpg
+Iced Tea Unsweetened Large,FALSE,2.04,iced_tea_large.jpg
+Iced Tea Sweet Small,FALSE,1.49,iced_tea_small.jpg
+Iced Tea Sweet Medium,FALSE,1.75,iced_tea_medium.jpg
+Iced Tea Sweet Large,FALSE,2.04,iced_tea_large.jpg
+Soft Drinks Small,FALSE,1.49,soft_drinks_small.jpg
+Soft Drinks Medium,FALSE,1.75,soft_drinks_medium.jpg
+Soft Drinks Large,FALSE,2.04,soft_drinks_large.jpg
+Dasani Water Bottle,FALSE,1.75,dasani_water_bottle.jpg
+Simply Orange Juice Bottle,FALSE,2.37,simply_orange_juice_bottle.jpg
+Apple Juice,FALSE,1.2,apple_juice.jpg
+Freshly-Brewed Tea 1 Gallon,FALSE,4.95,freshly_brewed_tea_gallon.jpg
+Fresh-Squeezed Lemonade 1 Gallon,FALSE,10.45,fresh_squeezed_lemonade_gallon.jpg
+Iced Coffee Original Medium,FALSE,2.59,iced_coffee_medium.jpg
+Iced Coffee Original Large,FALSE,2.92,iced_coffee_large.jpg
+Coffee Small,FALSE,1.81,coffee_small.jpg
+Coffee Medium,FALSE,2.15,coffee_medium.jpg
+Coffee Large,FALSE,2.37,coffee_large.jpg
+Coffee To-Go Box,FALSE,14.03,coffee_to_go_box.jpg
+1% Milk Plain or Chocolate,FALSE,1.31,one_percent_milk.jpg
+Hand-Spun Milkshakes_Cookies & Cream,FALSE,3.03,hand_spun_milkshakes_cookies_cream.jpg
+Hand-Spun Milkshakes_Chocolate,FALSE,3.03,hand_spun_milkshakes_chocolate.jpg
+Hand-Spun Milkshakes_Strawberry,FALSE,3.03,hand_spun_milkshakes_strawberry.jpg
+Hand-Spun Milkshakes_Vanilla,FALSE,3.03,hand_spun_milkshakes_vanilla.jpg
+Hand-Spun Milkshakes_Cookies & Cream,FALSE,3.47,hand_spun_milkshakes_cookies_cream.jpg
+Hand-Spun Milkshakes_Chocolate,FALSE,3.47,hand_spun_milkshakes_chocolate.jpg
+Hand-Spun Milkshakes_Strawberry,FALSE,3.47,hand_spun_milkshakes_strawberry.jpg
+Hand-Spun Milkshakes_Vanilla,FALSE,3.47,hand_spun_milkshakes_vanilla.jpg
+Frosted Lemonade,FALSE,3.03,frosted_lemonade.jpg
+Icedream Cone,FALSE,1.38,icedream_cone.jpg
+Icedream Cone,FALSE,1.81,icedream_cone.jpg
+Icedream Cup,FALSE,1.75,icedream_cup.jpg
+Icedream Cup,FALSE,2.04,icedream_cup.jpg
+Icedream Topping,FALSE,0.28,icedream_topping.jpg
+Chocolate Chunk Cookie_1 Pc.,FALSE,1.31,chocolate_chunk_cookie.jpg
+Chocolate Chunk Cookie_6 Pc.,FALSE,7.32,chocolate_chunk_cookie.jpg

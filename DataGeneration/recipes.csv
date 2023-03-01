@@ -1,0 +1,249 @@
+ChickFil-A Chicken Sandwich,fried_batter,1
+ChickFil-A Chicken Sandwich,bun,1
+ChickFil-A Chicken Sandwich,chicken_patty,1
+ChickFil-A Chicken Sandwich,pickle_chips,3
+ChickFil-A Chicken Deluxe Sandwich,fried_batter,1
+ChickFil-A Chicken Deluxe Sandwich,bun,1
+ChickFil-A Chicken Deluxe Sandwich,chicken_patty,1
+ChickFil-A Chicken Deluxe Sandwich,pickle_chips,3
+ChickFil-A Chicken Deluxe Sandwich,lettuce,2
+ChickFil-A Chicken Deluxe Sandwich,tomato,2
+ChickFil-A Chicken Deluxe Sandwich,cheese,1
+Spicy Chicken Sandwich,fried_batter,1
+Spicy Chicken Sandwich,spice,1
+Spicy Chicken Sandwich,bun,1
+Spicy Chicken Sandwich,chicken_patty,1
+Spicy Chicken Sandwich,pickle_chips,3
+Spicy Chicken Deluxe Sandwich,fried_batter,1
+Spicy Chicken Deluxe Sandwich,spice,1
+Spicy Chicken Deluxe Sandwich,bun,1
+Spicy Chicken Deluxe Sandwich,chicken_patty,1
+Spicy Chicken Deluxe Sandwich,pickle_chips,3
+Spicy Chicken Deluxe Sandwich,lettuce,2
+Spicy Chicken Deluxe Sandwich,tomato,2
+Spicy Chicken Deluxe Sandwich,cheese,1
+ChickFil-A Nuggets 8Pc,fried_batter,1
+ChickFil-A Nuggets 8Pc,chicken_nuggets,8
+ChickFil-A Nuggets 12Pc,fried_batter,1.2
+ChickFil-A Nuggets 12Pc,chicken_nuggets,12
+ChickFil-A Nuggets Grilled 8Pc,chicken_nuggets,8
+ChickFil-A Nuggets Grilled 12Pc,chicken_nuggets,12
+Chicken Strips 3Pc,fried_batter,1
+Chicken Strips 3Pc,chicken_strips,3
+Chickrn Strips 4Pc,fried_batter,1
+Chickrn Strips 4Pc,chicken_strips,4
+Grilled Chicken Sandwich,bun,1
+Grilled Chicken Sandwich,chicken_patty,1
+Grilled Chicken Sandwich,pickle_chips,3
+Grilled Chicken Club Sandwich,bun,1
+Grilled Chicken Club Sandwich,chicken_patty,1
+Grilled Chicken Club Sandwich,pickle_chips,3
+Grilled Chicken Club Sandwich,lettuce,2
+Grilled Chicken Club Sandwich,tomato,2
+Grilled Chicken Club Sandwich,cheese,1
+Grilled Chicken Cool Wrap,chicken_nuggets,0.5
+Grilled Chicken Cool Wrap,flat_bread,1
+Grilled Chicken Cool Wrap,mixed_greens,0.5
+Grilled Chicken Cool Wrap,shredded_monterey_jack,1
+Waffle Potato Fries - Small,waffle_fries,0.76
+Waffle Potato Fries - Medium,waffle_fries,1
+Waffle Potato Fries - Medium,waffle_fries,1.42
+Cobb Salad,mixed_greens,1
+Cobb Salad,roasted_corn_kernels,1
+Cobb Salad,shredded_monterey_jack,1
+Cobb Salad,crumbled_bacon,1
+Cobb Salad,avacado_lime_dressing,1
+Cobb Salad,red_bell_pepers,1
+Cobb Salad,grape tomatoes,5
+Cobb Salad,hard_boiled_egg,1
+Grilled Market Salad,chicken_patty,1
+Grilled Market Salad,mixed_greens,1
+Grilled Market Salad,blue_cheese,1
+Grilled Market Salad,apples,1
+Grilled Market Salad,strawberries,1
+Grilled Market Salad,blueberries,1
+Grilled Market Salad,harvest_nut_granola,1
+Grilled Market Salad,zesty_apple_vinagrette,1
+Grilled Market Salad With No Chicken,mixed_greens,1
+Grilled Market Salad With No Chicken,blue_cheese,1
+Grilled Market Salad With No Chicken,apples,1
+Grilled Market Salad With No Chicken,strawberries,1
+Grilled Market Salad With No Chicken,blueberries,1
+Grilled Market Salad With No Chicken,harvest_nut_granola,1
+Grilled Market Salad With No Chicken,zesty_apple_vinagrette,1
+Grilled Market Salad With ChickFil-A Filet,chicken_patty,1
+Grilled Market Salad With ChickFil-A Filet,fried_batter,1
+Grilled Market Salad With ChickFil-A Filet,mixed_greens,1
+Grilled Market Salad With ChickFil-A Filet,blue_cheese,1
+Grilled Market Salad With ChickFil-A Filet,apples,1
+Grilled Market Salad With ChickFil-A Filet,strawberries,1
+Grilled Market Salad With ChickFil-A Filet,blueberries,1
+Grilled Market Salad With ChickFil-A Filet,harvest_nut_granola,1
+Grilled Market Salad With ChickFil-A Filet,zesty_apple_vinagrette,1
+Grilled Market Salad With ChickNStrips,chicken_tenders,2
+Grilled Market Salad With ChickNStrips,fried_batter,1
+Grilled Market Salad With ChickNStrips,mixed_greens,1
+Grilled Market Salad With ChickNStrips,blue_cheese,1
+Grilled Market Salad With ChickNStrips,apples,1
+Grilled Market Salad With ChickNStrips,strawberries,1
+Grilled Market Salad With ChickNStrips,blueberries,1
+Grilled Market Salad With ChickNStrips,harvest_nut_granola,1
+Grilled Market Salad With ChickNStrips,zesty_apple_vinagrette,1
+Grilled Market Salad With Grilled Nuggets,chicken_nuggets,5
+Grilled Market Salad With Grilled Nuggets,mixed_greens,1
+Grilled Market Salad With Grilled Nuggets,blue_cheese,1
+Grilled Market Salad With Grilled Nuggets,apples,1
+Grilled Market Salad With Grilled Nuggets,strawberries,1
+Grilled Market Salad With Grilled Nuggets,blueberries,1
+Grilled Market Salad With Grilled Nuggets,harvest_nut_granola,1
+Grilled Market Salad With Grilled Nuggets,zesty_apple_vinagrette,1
+Grilled Market Salad With Nuggets,chicken_nuggets,5
+Grilled Market Salad With Nuggets,fried_batter,1
+Grilled Market Salad With Nuggets,mixed_greens,1
+Grilled Market Salad With Nuggets,blue_cheese,1
+Grilled Market Salad With Nuggets,apples,1
+Grilled Market Salad With Nuggets,strawberries,1
+Grilled Market Salad With Nuggets,blueberries,1
+Grilled Market Salad With Nuggets,harvest_nut_granola,1
+Grilled Market Salad With Nuggets,zesty_apple_vinagrette,1
+Grilled Market Salad With Spicy Filet,chicken_patty,1
+Grilled Market Salad With Spicy Filet,spice,1
+Grilled Market Salad With Spicy Filet,fried_batter,1
+Grilled Market Salad With Spicy Filet,mixed_greens,1
+Grilled Market Salad With Spicy Filet,blue_cheese,1
+Grilled Market Salad With Spicy Filet,apples,1
+Grilled Market Salad With Spicy Filet,strawberries,1
+Grilled Market Salad With Spicy Filet,blueberries,1
+Grilled Market Salad With Spicy Filet,harvest_nut_granola,1
+Grilled Market Salad With Spicy Filet,zesty_apple_vinagrette,1
+Chick-fil-A Chicken Biscuit,fried_batter,1
+Chick-fil-A Chicken Biscuit,chicken_patty,0.5
+Chick-fil-A Chicken Biscuit,biscuit,1
+Chick-n-Minis 3 Pc.,chicken_nuggets,3
+Chick-n-Minis 3 Pc.,chicken_mini_bread,3
+Chick-n-Minis 3 Pc.,fried_batter,1
+Chick-n-Minis 4 Pc.,chicken_nuggets,3
+Chick-n-Minis 4 Pc.,chicken_mini_bread,3
+Chick-n-Minis 4 Pc.,fried_batter,1
+Buttered Biscuit,butter,0.25
+Buttered Biscuit,biscuit,1
+Bacon,bacon,2
+Spicy Chicken Biscuit,spice,1
+Spicy Chicken Biscuit,fried_batter,1
+Spicy Chicken Biscuit,chicken_patty,0.5
+Spicy Chicken Biscuit,biscuit,1
+Breakfast Burrito Chicken,tortilla,1
+Breakfast Burrito Chicken,chicken_nuggets,4
+Breakfast Burrito Chicken,fried_batter,1
+Breakfast Burrito Chicken,eggs,1
+Breakfast Burrito Chicken,shredded_monterey_jack,1
+Sausage Egg & Cheese Biscuit,sausage,1
+Sausage Egg & Cheese Biscuit,eggs,1
+Sausage Egg & Cheese Biscuit,cheese,1
+Sausage Egg & Cheese Biscuit,biscuit,1
+Chicken Egg & Cheese Bagel,fried_batter,1
+Chicken Egg & Cheese Bagel,chicken_patty,1
+Chicken Egg & Cheese Bagel,eggs,1
+Chicken Egg & Cheese Bagel,cheese,1
+Chicken Egg & Cheese Bagel,bagel,1
+Oatmeal,oatmeal,1
+Oatmeal & Fruit Combo,fruit,1
+Oatmeal & Fruit Combo,oatmeal,1
+Fruit Cup Small,fruit,0.5
+Fruit Cup Medium,fruit,1
+Fruit Cup Large,fruit,1
+Plain Bagel,bagel,1
+Bagel with Cream Cheese,bagel,1
+Bagel with Cream Cheese,cream_cheese,1
+Hash Browns,hash_brown,1
+Yogurt Parfait,yogurt_parfait,1
+Cinnamon Cluster,cinamon_cluster,1
+Fresh-Squeezed Lemonade Small,lemonade,0.7
+Fresh-Squeezed Lemonade Small,straw,1
+Fresh-Squeezed Lemonade Small,small_drink_cup,1
+Fresh-Squeezed Lemonade Medium,lemonade,1
+Fresh-Squeezed Lemonade Medium,straw,1
+Fresh-Squeezed Lemonade Medium,medium_drink_cup,1
+Fresh-Squeezed Lemonade Large,lemonade,1.6
+Fresh-Squeezed Lemonade Large,straw,1
+Fresh-Squeezed Lemonade Large,large_drink_cup,1
+Fresh-Squeezed Diet Lemonade Small,straw,1
+Fresh-Squeezed Diet Lemonade Small,small_drink_cup,1
+Fresh-Squeezed Diet Lemonade Small,lemonade_diet,0.7
+Fresh-Squeezed Diet Lemonade Medium,straw,1
+Fresh-Squeezed Diet Lemonade Medium,medium_drink_cup,1
+Fresh-Squeezed Diet Lemonade Medium,lemonade_diet,1
+Fresh-Squeezed Diet Lemonade Large,straw,1
+Fresh-Squeezed Diet Lemonade Large,large_drink_cup,1
+Fresh-Squeezed Diet Lemonade Large,lemonade_diet,1.6
+Iced Tea Unsweetened Small,ice_tea_unsweet,0.7
+Iced Tea Unsweetened Small,straw,1
+Iced Tea Unsweetened Small,small_drink_cup,1
+Iced Tea Unsweetened Medium,ice_tea_unsweet,1
+Iced Tea Unsweetened Medium,straw,1
+Iced Tea Unsweetened Medium,medium_drink_cup,1
+Iced Tea Unsweetened Large,ice_tea_unsweet,1.6
+Iced Tea Unsweetened Large,straw,1
+Iced Tea Unsweetened Large,large_drink_cup,1
+Iced Tea Sweet Small,small_drink_cup,1
+Iced Tea Sweet Small,small_drink_cup,1
+Iced Tea Sweet Small,ice_tea_sweet,0.7
+Iced Tea Sweet Medium,straw,1
+Iced Tea Sweet Medium,medium_drink_cup,1
+Iced Tea Sweet Medium,ice_tea_sweet,1
+Iced Tea Sweet Large,straw,1
+Iced Tea Sweet Large,large_drink_cup,1
+Iced Tea Sweet Large,ice_tea_sweet,1.6
+Soft Drinks Small,soft_drink,0.7
+Soft Drinks Small,straw,1
+Soft Drinks Small,small_drink_cup,1
+Soft Drinks Medium,soft_drink,1
+Soft Drinks Medium,straw,1
+Soft Drinks Medium,medium_drink_cup,1
+Soft Drinks Large,soft_drink,1.6
+Soft Drinks Large,straw,1
+Soft Drinks Large,large_drink_cup,1
+Dasani Water Bottle,dasani_water_bottle,1
+Simply Orange Juice Bottle,orange_juice_bottle,1
+Apple Juice,apple_juice,1
+Freshly-Brewed Sweet Tea 1 Gallon,ice_tea_sweet,3.2
+Fresh-Squeezed Lemonade 1 Gallon,lemonade,3.2
+Iced Coffee Original Medium,ice_coffee,1
+Iced Coffee Original Large,ice_coffee,1.25
+Coffee Small,coffee,0.75
+Coffee Medium,coffee,1
+Coffee Large,coffee,1.25
+Coffee To-Go Box,Coffee_box,1
+1% Milk Chocolate,milk_chocolate,1
+1% Milk Plain,milk,1
+Hand-Spun Milkshakes_Vanilla,milk,1
+Hand-Spun Milkshakes_Vanilla,icecream,2
+Hand-Spun Milkshakes_Vanilla,vanilla_flavor,1
+Hand-Spun Milkshakes_Cookies & Cream,milk,1
+Hand-Spun Milkshakes_Cookies & Cream,icecream,2
+Hand-Spun Milkshakes_Cookies & Cream,cream_flavor,1
+Hand-Spun Milkshakes_Cookies & Cream,chunk_cookie,0.5
+Hand-Spun Milkshakes_Chocolate,milk,1
+Hand-Spun Milkshakes_Chocolate,icecream,2
+Hand-Spun Milkshakes_Chocolate,chocolate_flavor,1
+Hand-Spun Milkshakes_Strawberry,milk,1
+Hand-Spun Milkshakes_Strawberry,icecream,2
+Hand-Spun Milkshakes_Strawberry,strawberry_flavor,1
+Frosted Lemonade,lemonade,1
+Frosted Lemonade,frosted_extract,1
+Icedream Cone,icecream,1
+Icedream Cone,icecream_cone,1
+Icedream Cup,icecream,1
+Icedream Cup,icecream_come,1
+Icedream Topping,icecream_topping,1
+Chocolate Chunk Cookie_1 Pc.,chunk_cookie,1
+Chocolate Chunk Cookie_6 Pc.,chunk_cookie,6
+To Go Bag,to_go_bag,1
+Napkins,napkins,5
+Ketchup,ketchup,1
+Ranch,ranch,1
+Buffalo Sauce,buffalo_sauce,1
+BBQ Sauce,bbq_sauce,1
+Polynesian Sauce,polyneasian,1
+Chickfila sauce,chickfala,1
+Silverware,silverware,1
