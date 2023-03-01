@@ -234,8 +234,8 @@ def main() -> None:
     Supplies = fetchData(supply_file, lambda line : Supply(line))
     
     start_date: datetime.date = datetime.date(2022, 2, 21)
-    num_weeks = 1
-    profit = 200.00
+    num_weeks = 52
+    profit = 1000000.00
     simulate(start_date, num_weeks, profit)
     outputTables()
 
