@@ -5,7 +5,7 @@ In phase 2 we were challenged to polulate our databases over a 52 week period, g
 ## Task Breakdown
 * Ryan Paul - Tasked with creating and populating the menu item table inside our database. This will contain every item that is avaliable for purchase at our Chickfil-a. In addtion, Ryan will help create the 15 different SQL queries needed for our in lab demonstation
 
-* Cole McNeally - Create the python script that will take in our hand populated tables, and generate over 365 days worth of data for our database. In the script, Cole must generate over $1,000,000 in simulated revenue, as well as create 2 game days with a higher amount of sales.
+* Cole McAnelly - Create the python script that will take in our hand populated tables, and generate over 52 weeks worth of data for our database in the Orders, Order_Items, and Daily_Inventory tables. In the script, Cole must generate over $1,000,000 in simulated revenue over the 52 week span, as well as create 2 game days with a higher amount of sales.
 
 * Logan Kettle - Will create a better document from phase 1 outlining how each entitity relates to each other in our project. In addition, Logan will help create the 15 different SQL queries needed for our in lab demonstation.
 
