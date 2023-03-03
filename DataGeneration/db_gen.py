@@ -198,7 +198,7 @@ def simulateWeek(start_date: datetime.date, min_profit: float) -> float:
     profit: float = 0.0
     for day in range(days_per_week):
         if (date in GAMEDAYS):
-            daily_profit += 10
+            daily_profit *= 10
         profit += simulateDay(date, daily_profit)
         date += datetime.timedelta(days=1)
     return profit
