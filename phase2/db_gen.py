@@ -4,29 +4,30 @@ import random,datetime
 ##      CLASS DEFINITIONS
 class Kiosk:
     def __init__(self, line: str) -> None:
-        attr = line.split(',')
-        self.kiosk_id: int = int(attr[0])   # PK
-        self.kiosk_on: bool = attr[1].lower() in ['true', '1', 'on', 't', 'y']
+        atts = iter(line.split(','))
+        self.kiosk_id: int = int(next(atts))   # PK
+        self.kiosk_on: bool = next(atts).lower() in ['true', '1', 'on', 't', 'y']
         self.curr_order_num: int = 0
     def __repr__(self):
         return ",".join([str(val) for val in self.__dict__.values()])
 
 class MenuItem:
     def __init__(self, line: str) -> None:
-        attr = line.split(',')
-        self.item_name: str = attr[0]       # PK
-        self.combo: bool = attr[1].lower() in ['true', '1', 'on', 't', 'y']
-        self.price: float = float(attr[2])
-        self.img: str = attr[3]
+        atts = iter(line.split(','))
+        self.item_name: str = next(atts)       # PK
+        self.menu_category: str = next(atts)
+        self.combo: bool = next(atts).lower() in ['true', '1', 'on', 't', 'y']
+        self.price: float = float(next(atts))
+        self.img: str = next(atts)
     def __repr__(self):
         return ",".join([str(val) for val in self.__dict__.values()])
 
 class Recipe:
     def __init__(self, line: str) -> None:
-        attr = line.split(',')
-        self.menu_item: str = attr[0]       # PK
-        self.ingredient: str = attr[1]      # PK
-        self.portion_count: float = float(attr[2])
+        atts = iter(line.split(','))
+        self.menu_item: str = next(atts)       # PK
+        self.ingredient: str = next(atts)      # PK
+        self.portion_count: float = float(next(atts))
     
     def updateInventory(self, qty: float) -> None:
         supply = next(filter(lambda itm : itm.ingredient == self.ingredient, SUPPLIES))
@@ -40,10 +41,10 @@ class Recipe:
 
 class Supply:
     def __init__(self, line: str) -> None:
-        attr = line.split(',')
-        self.ingredient: str = attr[0]      # PK
-        self.threshold: float = float(attr[1])
-        self.restock_quantity: float = float(attr[2])
+        atts = iter(line.split(','))
+        self.ingredient: str = next(atts)      # PK
+        self.threshold: float = float(next(atts))
+        self.restock_quantity: float = float(next(atts))
     def __repr__(self):
         return ",".join([str(val) for val in self.__dict__.values()])
 
