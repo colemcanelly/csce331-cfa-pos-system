@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.sql.*;
 import java.util.Map;
 
@@ -29,7 +28,7 @@ public class CFADataBase {
      * @param 
      * @return      Collection of menu entries
      */
-    public Collection<Map<String, String>> getMenu() { return menu.values(); }
+    public Map<String, Map<String, String>> getMenu() { return menu; }
 
     /**
      * Refreshes the menu, returns true if successful

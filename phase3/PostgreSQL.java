@@ -78,9 +78,10 @@ public class PostgreSQL {
             // create a statement object that can be interactively updated and sensitive to changes made in real-time
             Statement s = this.conn.createStatement();
             // send statement to DBMS
-            rows = s.executeUpdate (sql);
+            rows = s.executeUpdate(sql);
         } catch (Exception e) {
             System.out.println("Error accessing Database.");
+            return -1;
         }
         return rows;
     }
