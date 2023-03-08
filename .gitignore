@@ -1,5 +1,8 @@
 # Compiled class file
 *.class
 
+# Log files
+*.log
+
 # VS Code preference files
 .vscode
