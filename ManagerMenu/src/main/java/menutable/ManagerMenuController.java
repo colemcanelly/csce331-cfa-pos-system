@@ -83,7 +83,6 @@ public class ManagerMenuController implements Initializable {
 
     public ObservableList<MenuItem> getMenuList(){
         ObservableList<MenuItem> menuList = FXCollections.observableArrayList();
-
         Map<String, Map<String, String>> menu = db.getMenu();
         for(Map<String, String> item : menu.values()){
             String menu_item = item.get("menu_item");
@@ -103,8 +102,9 @@ public class ManagerMenuController implements Initializable {
      */
     private void addMenuItem(){
         String query = "INSERT INTO menu (menu_item,food_price) VALUES ('"+ item_box.getText() +"', "+ Float.parseFloat(price_box.getText())+");";
-        psql.update(query);
+        psql.query(query);
         menu_table.setItems(getMenuList());
+        db.refreshMenu();
     }
 
     /**
@@ -116,14 +116,16 @@ public class ManagerMenuController implements Initializable {
         String old_value = item_box.getText();
         String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = " + Float.parseFloat(price_box.getText()) +
                 " WHERE menu_item = '" + old_value + "';";
-        psql.update(query);
+        psql.query(query);
         menu_table.setItems(getMenuList());
+        menu_table.refresh();
     }
 
     private void removeMenuItem(){
         String query = "DELETE FROM menu WHERE menu_item  = '" + item_box.getText() + "';";
-        psql.update(query);
+        psql.query(query);
         menu_table.setItems(getMenuList());
+        menu_table.refresh();
     }
 
 }

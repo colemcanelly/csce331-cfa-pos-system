@@ -1,7 +1,6 @@
 package menutable;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.sql.*;
 import java.util.Map;
 
@@ -13,24 +12,28 @@ import java.util.Map;
 public class CFADataBase {
     private static final String MENU_QUERY = "SELECT * FROM menu";
 
+    private PostgreSQL psql = null;
     private ResultSet menu_set = null;
     private Map<String, Map<String, String>> menu = null;
 
 
     public CFADataBase()
     {
-        PostgreSQL psql = new PostgreSQL();
-        menu_set = psql.query(MENU_QUERY);
+        psql = new PostgreSQL();
+        menu_set = psql.select(MENU_QUERY);
         refreshMenu();
     }
 
     /**
-     * Gets the menu in a collection of key-value pairs
+     * Gets the menu in a dictionary of key-value pairs, where key = primary key
      *      ex. {{"menu_item", "ChickFil-A Chicken Sandwich"}, ... }
      * @param
-     * @return      Collection of menu entries
+     * @return      Dictionary of menu entries (dictionaries)
      */
-    public Map<String, Map<String, String>> getMenu() { return menu; }
+    public Map<String, Map<String, String>> getMenu() {
+        // refreshMenu();
+        return menu;
+    }
 
     /**
      * Refreshes the menu, returns true if successful
@@ -53,11 +56,15 @@ public class CFADataBase {
     /**
      * Used to execute an insertion query from our database (CREATE, UPDATE, INSERT, etc.).
      * @param ordered_items List of "menu_item" strings, ie the name of the item to order
-     * @param name  Customer Name
+     * @param customer_name  Customer Name
      * @param kiosk_id  Integer ID of the kiosk that created the order
      * @return      Number of rows impacted by your query
      */
-    public int newOrder(ArrayList<String> ordered_items, String name, int kiosk_id) { return 0; }
+    public int newOrder(ArrayList<String> ordered_items, String customer_name, int kiosk_id, int order_num)
+    {
+        String order_query = String.format("INSERT INTO kiosk VALUES (10, FALSE);");
+        return 0;
+    }
 
     private static Map<String, Map<String, String>> rsToMap(ResultSet rs, ArrayList<String> pk_names)
     {

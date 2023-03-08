@@ -1,5 +1,4 @@
 package menutable;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,7 +7,6 @@ import java.util.ArrayList;
  *
  * @author  colemcanelly
  */
-
 public class PostgreSQL {
     private static final String USER = "csce315331_delta_master";
     private static final String PSWD = "airplane";
@@ -55,7 +53,7 @@ public class PostgreSQL {
      * @param sql   The SELECT statment to run
      * @return      The results of that query, in a ResultSet object
      */
-    public ResultSet query (String sql)
+    public ResultSet select (String sql)
     {
         ResultSet result = null;
         try {
@@ -74,16 +72,17 @@ public class PostgreSQL {
      * @param sql   The sql query you would like to execute
      * @return      Number of rows impacted by your query
      */
-    public int update (String sql)
+    public int query (String sql)
     {
         int rows = 0;
         try {
             // create a statement object that can be interactively updated and sensitive to changes made in real-time
             Statement s = this.conn.createStatement();
             // send statement to DBMS
-            rows = s.executeUpdate (sql);
+            rows = s.executeUpdate(sql);
         } catch (Exception e) {
             System.out.println("Error accessing Database.");
+            return -1;
         }
         return rows;
     }
