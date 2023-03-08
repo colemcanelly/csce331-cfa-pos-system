@@ -15,7 +15,7 @@
          <children>
             <StackPane layoutX="329.0" layoutY="56.0" prefHeight="328.0" prefWidth="462.0">
                <children>
-                  <TableView fx:id="menu_table" prefHeight="328.0" prefWidth="462.0">
+                  <TableView fx:id="menu_table" onMouseClicked="#handleMouseAction" prefHeight="328.0" prefWidth="462.0">
                      <columns>
                         <TableColumn fx:id="menu_item_col" prefWidth="336.5" text="Menu Item" />
                         <TableColumn fx:id="menu_price_col" prefWidth="124.5" text="Menu Price" />
@@ -23,24 +23,29 @@
                   </TableView>
                </children>
             </StackPane>
-            <Button fx:id="add_button" layoutX="110.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="78.0" text="Add">
+            <Button fx:id="add_button" layoutX="30.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="78.0" text="Add">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="price_box" layoutX="110.0" layoutY="99.0" prefHeight="25.0" prefWidth="192.0" />
-            <Text fill="WHITE" layoutX="41.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Price" wrappingWidth="68.9765625">
+            <TextField fx:id="price_box" layoutX="82.0" layoutY="99.0" prefHeight="25.0" prefWidth="240.0" />
+            <Text fill="WHITE" layoutX="14.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Price" wrappingWidth="68.9765625">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <TextField fx:id="item_box" layoutX="110.0" layoutY="61.0" prefHeight="25.0" prefWidth="192.0" />
-            <Text fill="WHITE" layoutX="41.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Item" wrappingWidth="68.9765625">
+            <TextField fx:id="item_box" layoutX="81.0" layoutY="61.0" prefHeight="25.0" prefWidth="240.0" />
+            <Text fill="WHITE" layoutX="14.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Item" wrappingWidth="68.9765625">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <Button fx:id="update_button" layoutX="212.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="90.0" text="Update">
+            <Button fx:id="update_button" layoutX="126.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="90.0" text="Update">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="remove_button" layoutX="231.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="90.0" text="Remove">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>

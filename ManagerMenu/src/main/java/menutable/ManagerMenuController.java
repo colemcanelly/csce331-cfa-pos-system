@@ -7,17 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.DriverManager;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class ManagerMenuController implements Initializable {
 
@@ -51,20 +46,31 @@ public class ManagerMenuController implements Initializable {
     private Button update_button;
 
     @FXML
+    private Button remove_button;
+
+
+    @FXML
     void handleButtonAction(ActionEvent event) {
         if(event.getSource() == add_button){
             addMenuItem();
         }else if (event.getSource() == update_button){
             updateMenuItem();
         }
+        else if (event.getSource() ==remove_button){
+            removeMenuItem();
+        }
+    }
+
+    @FXML
+    void handleMouseAction(MouseEvent event) {
+        MenuItem item = menu_table.getSelectionModel().getSelectedItem();
+        item_box.setText(""+ item.getMenu_item_name());
+        price_box.setText(""+item.getItem_price());
     }
 
 
     public void initialize(URL url, ResourceBundle rb){
-        menu_item_col = new TableColumn<>("Menu Item");
-        menu_item_col.setCellValueFactory(new PropertyValueFactory<>("item_name"));
-
-        menu_price_col = new TableColumn<>("Price");
+        menu_item_col.setCellValueFactory(new PropertyValueFactory<>("menu_item_name"));
         menu_price_col.setCellValueFactory(new PropertyValueFactory<>("item_price"));
 
         // add the columns to the table view
@@ -82,6 +88,7 @@ public class ManagerMenuController implements Initializable {
         for(Map<String, String> item : menu.values()){
             String menu_item = item.get("menu_item");
             String food_price = item.get("food_price");
+            System.out.println("menu_item: " + menu_item + ", food_price: " + food_price);
             MenuItem menuItem = new MenuItem(menu_item, Float.parseFloat(food_price));
             menuList.add(menuItem);
         }
@@ -95,8 +102,7 @@ public class ManagerMenuController implements Initializable {
      * @author Ryan Paul
      */
     private void addMenuItem(){
-//        String query = "INSERT INTO menu VALUES (" + item_box.getText() + ",'" + price_box.getText();
-        String query = "INSERT INTO menu (menu_item,food_price) VALUES ('"+ item_box.getText() +"', '"+ price_box.getText()+"');";
+        String query = "INSERT INTO menu (menu_item,food_price) VALUES ('"+ item_box.getText() +"', "+ Float.parseFloat(price_box.getText())+");";
         psql.update(query);
         menu_table.setItems(getMenuList());
     }
@@ -108,9 +114,14 @@ public class ManagerMenuController implements Initializable {
      */
     private void updateMenuItem(){
         String old_value = item_box.getText();
-//        String old_price = price_box.getText();
-        String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = '" + price_box.getText() +
-                "' WHERE menu_item = '" + old_value + "'";
+        String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = " + Float.parseFloat(price_box.getText()) +
+                " WHERE menu_item = '" + old_value + "';";
+        psql.update(query);
+        menu_table.setItems(getMenuList());
+    }
+
+    private void removeMenuItem(){
+        String query = "DELETE FROM menu WHERE menu_item  = '" + item_box.getText() + "';";
         psql.update(query);
         menu_table.setItems(getMenuList());
     }
