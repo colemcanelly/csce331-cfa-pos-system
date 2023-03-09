@@ -18,7 +18,7 @@ public class ManagerMenuApplication extends Application {
             return;
         }
         FXMLLoader fxmlLoader = new FXMLLoader(ManagerMenuApplication.class.getResource("ManagerMenu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 820, 422);
+        Scene scene = new Scene(fxmlLoader.load(), 939, 427);
         stage.setTitle("Chick-fil-A Menu");
         stage.setScene(scene);
         stage.show();

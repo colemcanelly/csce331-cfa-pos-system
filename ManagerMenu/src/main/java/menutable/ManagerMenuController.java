@@ -25,6 +25,18 @@ public class ManagerMenuController implements Initializable {
     private TextField item_box;
 
     @FXML
+    private TextField combo_box;
+
+    @FXML
+    private TextField category_box;
+
+    @FXML
+    private TableColumn<MenuItem, String> menu_category_col;
+
+    @FXML
+    private TableColumn<MenuItem, Boolean> menu_combo_col;
+
+    @FXML
     private TableColumn<MenuItem, String> menu_item_col;
 
     @FXML
@@ -66,16 +78,22 @@ public class ManagerMenuController implements Initializable {
         MenuItem item = menu_table.getSelectionModel().getSelectedItem();
         item_box.setText(""+ item.getMenu_item_name());
         price_box.setText(""+item.getItem_price());
+        combo_box.setText(""+item.getItem_combo());
+        category_box.setText(""+item.getItem_category());
     }
 
 
     public void initialize(URL url, ResourceBundle rb){
         menu_item_col.setCellValueFactory(new PropertyValueFactory<>("menu_item_name"));
         menu_price_col.setCellValueFactory(new PropertyValueFactory<>("item_price"));
+        menu_combo_col.setCellValueFactory(new PropertyValueFactory<>("item_combo"));
+        menu_category_col.setCellValueFactory(new PropertyValueFactory<>("item_category"));
 
         // add the columns to the table view
         menu_table.getColumns().add(menu_item_col);
         menu_table.getColumns().add(menu_price_col);
+        menu_table.getColumns().add(menu_combo_col);
+        menu_table.getColumns().add(menu_category_col);
 
         // set the data source for the table view
         menu_table.setItems(getMenuList());
@@ -87,8 +105,10 @@ public class ManagerMenuController implements Initializable {
         for(Map<String, String> item : menu.values()){
             String menu_item = item.get("menu_item");
             String food_price = item.get("food_price");
-            System.out.println("menu_item: " + menu_item + ", food_price: " + food_price);
-            MenuItem menuItem = new MenuItem(menu_item, Float.parseFloat(food_price));
+            String combo = item.get("combo");
+            String category = item.get("menu_cat");
+            System.out.println("menu_item: " + menu_item + ", food_price: " + food_price + ", combo: " + combo + ", category: " + category);
+            MenuItem menuItem = new MenuItem(menu_item, Float.parseFloat(food_price), Boolean.parseBoolean(combo), category);
             menuList.add(menuItem);
         }
 
@@ -101,10 +121,10 @@ public class ManagerMenuController implements Initializable {
      * @author Ryan Paul
      */
     private void addMenuItem(){
-        String query = "INSERT INTO menu (menu_item,food_price) VALUES ('"+ item_box.getText() +"', "+ Float.parseFloat(price_box.getText())+");";
+        String query = "INSERT INTO menu (menu_item,food_price,combo,menu_cat) VALUES ('"+ item_box.getText() +"', "
+                + Float.parseFloat(price_box.getText())+ ", '" + Boolean.parseBoolean(combo_box.getText()) + "', '"+ category_box.getText() +"');";
         psql.query(query);
         menu_table.setItems(getMenuList());
-        db.refreshMenu();
     }
 
     /**
@@ -113,19 +133,18 @@ public class ManagerMenuController implements Initializable {
      * @author Ryan Paul
      */
     private void updateMenuItem(){
-        String old_value = item_box.getText();
+//        String old_value = item_box.getText();
         String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = " + Float.parseFloat(price_box.getText()) +
-                " WHERE menu_item = '" + old_value + "';";
+                ", combo =  '" + combo_box.getText() + "' , menu_cat =  '" + category_box.getText()
+                + "' WHERE menu_item = '" + item_box.getText() + "';";
         psql.query(query);
         menu_table.setItems(getMenuList());
-        menu_table.refresh();
     }
 
     private void removeMenuItem(){
         String query = "DELETE FROM menu WHERE menu_item  = '" + item_box.getText() + "';";
         psql.query(query);
         menu_table.setItems(getMenuList());
-        menu_table.refresh();
     }
 
 }
