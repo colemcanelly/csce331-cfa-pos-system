@@ -18,6 +18,9 @@ public class ManagerMenuController implements Initializable {
 
     private PostgreSQL psql = new PostgreSQL();
     private CFADataBase db = new CFADataBase();
+
+    @FXML
+    private Button back_button;
     @FXML
     private Button add_button;
 
