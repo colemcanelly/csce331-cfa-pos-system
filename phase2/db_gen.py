@@ -62,7 +62,7 @@ class Recipe:
         supply = next(filter(lambda itm : itm.ingredient == self.ingredient, SUPPLIES))
         onhand = next(filter(lambda itm : itm.ingredient == self.ingredient, inv_today))
         onhand.qty_sold += (self.portion_count * qty)
-        if ((onhand.qty_sod + onhand.qty_new - onhand.qty_sold) > supply.threshold):
+        if ((onhand.qty_sod + onhand.qty_new - onhand.qty_sold) < supply.threshold):
             onhand.qty_new += supply.restock_quantity
     
     def __repr__(self):
