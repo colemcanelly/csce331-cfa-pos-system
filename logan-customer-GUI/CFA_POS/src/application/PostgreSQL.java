@@ -1,4 +1,5 @@
 package application;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class PostgreSQL {
      * @param sql   The SELECT statment to run
      * @return      The results of that query, in a ResultSet object
      */
-    public ResultSet query (String sql)
+    public ResultSet select (String sql)
     {
         ResultSet result = null;
         try {
@@ -72,7 +73,7 @@ public class PostgreSQL {
      * @param sql   The sql query you would like to execute
      * @return      Number of rows impacted by your query
      */
-    public int update (String sql)
+    public int query (String sql)
     { 
         int rows = 0;
         try {

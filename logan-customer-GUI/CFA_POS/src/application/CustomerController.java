@@ -13,23 +13,36 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
+
+import java.lang.Float;
 
 
 
 public class CustomerController implements Initializable {
 	
+	private ArrayList<String> order_items = new ArrayList<String>();
+	private CFADataBase db = new CFADataBase();
+	private int receiptIndex = 0;
+	private Float totalPrice = (float) 0.0;
+	
 	public BorderPane createMenuItem(String foodItem, String price) {	// TODO: add image url argument
-		
-		
 		
 		BorderPane to_return = new BorderPane();
 		
@@ -50,6 +63,7 @@ public class CustomerController implements Initializable {
 //		imageView.setPreserveRatio(true);
 //		to_return.setCenter(imageView);
 		
+		
 		EventHandler<MouseEvent> borderPaneClicked = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -60,12 +74,17 @@ public class CustomerController implements Initializable {
 				
 				Label receiptEntry = new Label(foodItem.getText() + " / " + priceAmt.getText());
 				
-				receiptGrid.add(receiptEntry, 0, 0);
+				receiptGrid.add(receiptEntry, 0, receiptIndex);
+				receiptIndex++;
+				
+				totalPrice = totalPrice + Float.parseFloat(priceAmt.getText());
+				totalPriceLbl.setText(totalPrice.toString());
 				
 				System.out.println(foodItem.getText() + " was added to order");
 
 				//updating database
 				// add combo to array list
+				order_items.add(foodItem.getText());
 				
 			}
 		};
@@ -79,7 +98,6 @@ public class CustomerController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
-		ArrayList<String> order_items = new ArrayList<String>();
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
@@ -92,11 +110,18 @@ public class CustomerController implements Initializable {
 		
 		cfaLogoImg.setImage(cfa_logo);
 		
-		CFADataBase db = new CFADataBase();
 		Map<String, Map<String, String>> menu = db.getMenu();
 		
-		int col = 0;
-		int row = 0;
+		
+		VBox vbox = new VBox();
+		
+		vbox.setTranslateX(10.0);
+		vbox.setTranslateY(10.0);
+		
+		
+		
+		
+		
 		
 		System.out.println("entering for loop");
 		for (Map<String, String> item : menu.values()) {
@@ -105,29 +130,13 @@ public class CustomerController implements Initializable {
 			String is_combo = item.get("combo");
 			System.out.println(menu_item + " | " + food_price + " | " + is_combo);
 			BorderPane newBorderPane = createMenuItem(menu_item, food_price);
-			System.out.println("created BorderPane");
 			
-			if (is_combo.equals("t")) {
-				comboTabGrid.add(newBorderPane, col, row);
-				if (col == 2 && row == 3) {
-					break;
-				}
-				if (col == 2) {
-					col = 0;
-				}
-				else {
-					col++;
-				}
-				
-				if (row == 3) {
-					row = 0;
-				}
-				else {
-					row++;
-				}
-			}
+			vbox.getChildren().add(newBorderPane);
 			
 		}
+		
+		scrollPane.setContent(vbox);
+		
 		
 	}
 	
@@ -139,6 +148,9 @@ public class CustomerController implements Initializable {
     
     @FXML
     private GridPane receiptGrid;
+    
+    @FXML
+    private GridPane menuGrid;
 
     @FXML
     private ImageView cfaLogoImg;
@@ -154,12 +166,18 @@ public class CustomerController implements Initializable {
     
     @FXML
     private Label customerNameLbl;
+    
+    @FXML
+    private ListView<String> menuList;
 
     @FXML
     private Label dateLbl;
 
     @FXML
     private BorderPane dessertFoodItem;
+    
+    @FXML
+    private ScrollPane scrollPane;
     
     @FXML
     private ListView<String> receiptList;
@@ -240,7 +258,11 @@ public class CustomerController implements Initializable {
 
     @FXML
     void removeItemBtnClick(MouseEvent event) {
-
+    	order_items.clear();
+    	receiptGrid.getChildren().clear();
+    	receiptIndex = 0;
+    	totalPrice = (float) 0;
+    	totalPriceLbl.setText("0");
     }
 
     @FXML
@@ -252,6 +274,18 @@ public class CustomerController implements Initializable {
     void submitOrderBtnClick(MouseEvent event) {
     	System.out.println("order button clicked");
     	// newOrder(order_items)
+    	
+    	db.newOrder(order_items, "Cole McAnelly", 1, 1234);
+    	receiptGrid.getChildren().clear();
+    	
+    	for (String s : order_items) {
+    		System.out.println(s);
+    	}
+    	
+    	totalPrice = (float) 0;
+    	totalPriceLbl.setText("0");
+    	order_items.clear();
+    	receiptIndex = 0;
     }
 
     @FXML

@@ -24,7 +24,7 @@ public class Customer extends Application {
 	  * sets it all up and displays. An error message is printed if the program
 	  * fails.
 	  * 
-	  * @param  primaryStage   the top-level GUI continaer to store all components
+	  * @param  primaryStage   the top-level GUI container to store all components
 	  */
 	@Override
 	public void start(Stage primaryStage) {
