@@ -104,7 +104,7 @@ public class ManagerMenuController implements Initializable {
 
     public ObservableList<MenuItem> getMenuList(){
         ObservableList<MenuItem> menuList = FXCollections.observableArrayList();
-        Map<String, Map<String, String>> menu = db.getMenu();
+        Map<String, Map<String, String>> menu = db.get(CFADataBase.Table.MENU);
         for(Map<String, String> item : menu.values()){
             String menu_item = item.get("menu_item");
             String food_price = item.get("food_price");
@@ -138,7 +138,7 @@ public class ManagerMenuController implements Initializable {
     private void updateMenuItem(){
 //        String old_value = item_box.getText();
         String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = " + Float.parseFloat(price_box.getText()) +
-                ", combo =  '" + combo_box.getText() + "' , menu_cat =  '" + category_box.getText()
+                ", combo =  '" + Boolean.parseBoolean(combo_box.getText()) + "' , menu_cat =  '" + category_box.getText()
                 + "' WHERE menu_item = '" + item_box.getText() + "';";
         psql.query(query);
         menu_table.setItems(getMenuList());
