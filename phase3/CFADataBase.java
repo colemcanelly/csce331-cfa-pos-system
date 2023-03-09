@@ -107,6 +107,7 @@ public class CFADataBase {
      */
     public boolean newOrder(ArrayList<String> ordered_items, String customer_name, int kiosk_id, int order_num)
     {
+        // Insert a new order without totaling the order for time complexity
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
         Double order_total = 0.0;
@@ -116,7 +117,7 @@ public class CFADataBase {
             System.out.println(order_query);
             return false;
         }
-
+        // Query the order id of the new order that was just created
         String query_order_id = "SELECT max(order_id) FROM orders;";
         int order_id = -1;
         try {
@@ -130,6 +131,7 @@ public class CFADataBase {
             System.out.println("Error getting order id for order item");
             return false;
         }
+        // Create order_item entries for each, using the order_id from the original order, while calculating the order total
         for (String item_name : ordered_items) {
             Double food_price = Double.parseDouble(get(Table.MENU).get(item_name).get("food_price"));
             order_total += food_price;
@@ -141,6 +143,7 @@ public class CFADataBase {
             }
             // update menu_item_quantity
         }
+        // Update the original order with the calculated order total
         String update_order = String.format("UPDATE orders SET order_total = %f WHERE order_id = %d;",order_total, order_id);
         if (psql.query(update_order) != 1) {
             System.out.println(String.format("Incomplete record where order_id = %d", order_id));
