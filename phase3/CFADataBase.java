@@ -85,6 +85,19 @@ public class CFADataBase {
         return table;
     }
 
+    public Map<String, Map<String, String>> getNewestInv()
+    {
+        Map<String, Map<String, String>> table = null;
+        try {
+            String latest_daily_inv_entries = "SELECT entry_date, ingredient, qty_eod FROM daily_inventory WHERE entry_date = (SELECT max(entry_date) FROM daily_inventory);";
+            table = rsToMap(psql.select(latest_daily_inv_entries), DAILY_INV_PKS);
+        } catch (Exception e) {
+            System.out.println("Error refreshing menu.");
+            return null;
+        }
+        return table;
+    }
+
     /**
      * Used to execute an insertion query from our database (CREATE, UPDATE, INSERT, etc.).
      * @param ordered_items List of "menu_item" strings, ie the name of the item to order
@@ -101,18 +114,16 @@ public class CFADataBase {
         for (String item_name : ordered_items) {
             Double food_price = Double.parseDouble(get(Table.MENU).get(item_name).get("food_price"));
             order_total += food_price;
-            String order_item_query = String.format(
-                "INSERT INTO order_items VALUES (nextval('orders_order_id_seq'), %s, %d, %f);",
-                item_name, 1, food_price); 
+            String order_item_query = String.format("INSERT INTO order_items VALUES (nextval('orders_order_id_seq'), '%s', %d, %f);",item_name, 1, food_price);
+            System.out.println(order_item_query);
             if (psql.query(order_item_query) < 0) {
                 System.out.println("Error inserting order item");
                 return false;
             }
             // update menu_item_quantity
         }
-        String order_query = String.format(
-            "INSERT INTO orders VALUES (%d, %s, %s, %f, %s, %d);",
-            order_num, date.toString(), time.toString(), order_total, customer_name, kiosk_id);
+        String order_query = String.format("INSERT INTO orders VALUES (%d, '%s', '%s', %f, '%s', %d);", order_num, date.toString(), time.toString(), order_total, customer_name, kiosk_id);
+        System.out.println(order_query);
         if (psql.query(order_query) < 0) {
             System.out.println("Error inserting order");
             return false;
