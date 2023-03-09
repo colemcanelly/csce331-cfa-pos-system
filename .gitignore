@@ -4,6 +4,9 @@
 # Log files
 *.log
 
+# Manual ignore
+*.ignore.*
+
 # VS Code preference files
 .vscode
 
