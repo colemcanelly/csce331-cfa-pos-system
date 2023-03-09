@@ -85,3 +85,6 @@ CREATE TABLE daily_inventory (
 \copy orders from './csv/orders.csv' CSV
 \copy order_items from './csv/order_items.csv' CSV
 \copy daily_inventory from './csv/daily_inventory.csv' CSV
+
+-- Set the sequence value for entering new data
+ SELECT setval('orders_order_id_seq', (SELECT max(order_id) FROM orders));

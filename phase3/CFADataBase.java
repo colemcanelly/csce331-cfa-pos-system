@@ -110,11 +110,30 @@ public class CFADataBase {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
         Double order_total = 0.0;
+        String order_query = String.format("INSERT INTO orders VALUES ((SELECT nextval('orders_order_id_seq')), %d, '%s', '%s', %f, '%s', %d);", order_num, date.toString(), time.toString(), order_total, customer_name, kiosk_id);
+        if (psql.query(order_query) < 0) {
+            System.out.println("Error inserting order");
+            System.out.println(order_query);
+            return false;
+        }
 
+        String query_order_id = "SELECT max(order_id) FROM orders;";
+        int order_id = -1;
+        try {
+            ResultSet res = psql.select(query_order_id);
+            res.next();
+            System.out.println(res.getString("max"));
+            order_id = res.getInt("max");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error getting order id for order item");
+            return false;
+        }
         for (String item_name : ordered_items) {
             Double food_price = Double.parseDouble(get(Table.MENU).get(item_name).get("food_price"));
             order_total += food_price;
-            String order_item_query = String.format("INSERT INTO order_items VALUES (nextval('orders_order_id_seq'), '%s', %d, %f);",item_name, 1, food_price);
+            String order_item_query = String.format("INSERT INTO order_items VALUES (%d, '%s', %d, %f);", order_id, item_name, 1, food_price);
             System.out.println(order_item_query);
             if (psql.query(order_item_query) < 0) {
                 System.out.println("Error inserting order item");
@@ -122,10 +141,9 @@ public class CFADataBase {
             }
             // update menu_item_quantity
         }
-        String order_query = String.format("INSERT INTO orders VALUES (%d, '%s', '%s', %f, '%s', %d);", order_num, date.toString(), time.toString(), order_total, customer_name, kiosk_id);
-        System.out.println(order_query);
-        if (psql.query(order_query) < 0) {
-            System.out.println("Error inserting order");
+        String update_order = String.format("UPDATE orders SET order_total = %f WHERE order_id = %d;",order_total, order_id);
+        if (psql.query(update_order) != 1) {
+            System.out.println(String.format("Incomplete record where order_id = %d", order_id));
             return false;
         }
         return true;
