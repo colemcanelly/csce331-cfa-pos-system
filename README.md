@@ -1,20 +1,14 @@
-# csce331-cfa-pos-system Project 2 Phase 2 Iteration
-## Creating 52 weeks worth of data
-In phase 2 we were challenged to polulate our databases over a 52 week period, generating over $1,000,000 in revenue at the Chickfala. In addition we needed to create 15 different SQL queries that will demonstate that our data is sucessfully populated and meets necessary requirements.
+# csce331-cfa-pos-system Project 2 Phase 3 Iteration
+In phase 3 of project 2, we implemented a low level graphical interface that interacts with the databases we created in phase 2. This phase consist of 2 main parts, creating the customer and manager GUIs. Below we will explore what we implemented, and looking into how we will improve on our work in phase 4.
 
-## Task Breakdown
-* Ryan Paul - Tasked with creating and populating the menu item table inside our database. This will contain every item that is avaliable for purchase at our Chickfil-a. In addtion, Ryan will help create the 15 different SQL queries needed for our in lab demonstation
+## Roles:
+* Cole McAnelly - Cole created a Java scripts with functions that allowed the front end of the system to call to and update the database when needed. This was huge, as it allowed us to separate out our work and logic, as well as took away from redundent coding in our front end.
 
-* Cole McAnelly - Create the python script that will take in our hand populated tables, and generate over 52 weeks worth of data for our database in the Orders, Order_Items, and Daily_Inventory tables. In the script, Cole must generate over $1,000,000 in simulated revenue over the 52 week span, as well as create 2 game days with a higher amount of sales.
+* Logan Kettle - Logan created the Customer Interface for our POS system. On the Customer side, people are allowed to choose menu items to create and order, and submit an order to the database. The Customer Interface also displays any new or updated values that the ManagerMenu interface creates
 
-* Logan Kettle - Will create a better document from phase 1 outlining how each entitity relates to each other in our project. In addition, Logan will help create the 15 different SQL queries needed for our in lab demonstation.
+* Weston Cadena - Weston created the ManagerIngredient Interface. Here, the manager can see each ingredient item along with its current supply, and has the ability to update or order a new amount of the ingredient. The changes will be displayed both in the front end as well as in the database
 
-* Weston Cadena - Tasked with creating and populating ingredients and well as the few other tables needed to be poulated by hand. In addition, maintain a log of our progress over this phase.
+* Ryan Paul - Weston created the ManagerMenu Interface. Here, the manager can see each Menu Item along with its current cost, and has the ability to update or add a new item to the menu. The changes will be displayed both in the front end as well as in the database
 
-## Updated
-restock_quantity attribute in supply - This will allow us to have a generic value to order when the supply values goes under our threshold
-combo attribute in menu_item - This will allow us to know if a menu item is a combo. If it is, then we will add a medium dring and fries to it.
-Important Notes
-Right now in our daily inventory file is in need of another iteration in order to create a more realistic simulation. Do to time constraints in phase 2, our python script starts each day at a maxed restock value for each supply, and then updates it throughout the day. We will need to redo this script, in order to allow for the stock to keep up with real time quantitys, and be restocked when necessary.
-
-In addition, we will need to simulate orders containing sauces. At the end of each order, sauces should be added to the order_item at the end of each order generation
+## Whats Next 
+In Phase Four, we are looking into adding onto our current system in order to make it more usable and advanced. In phase 4, we will add the ability to create graphs that will display trends over time of different menu items and ingredients. In addition, we will add onto our current menu, separating out each individual catagory (ex: breakfeast, dessert) and also add a seasonal item to the menu.
