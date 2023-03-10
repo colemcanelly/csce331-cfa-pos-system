@@ -12,3 +12,17 @@ In phase 3 of project 2, we implemented a low level graphical interface that int
 
 ## Whats Next 
 In Phase Four, we are looking into adding onto our current system in order to make it more usable and advanced. In phase 4, we will add the ability to create graphs that will display trends over time of different menu items and ingredients. In addition, we will add onto our current menu, separating out each individual catagory (ex: breakfeast, dessert) and also add a seasonal item to the menu.
+
+# Phase 4
+## Cole 
+
+## Logan 
+* Display Seasonal Items on the Customer Side
+* Do the Z report
+* Do the Y report
+
+## Weston 
+* Do the Excess Report
+
+## Ryan
+* Restcok Reports
