@@ -7,8 +7,14 @@
 # Manual ignore
 *.ignore.*
 
-# VS Code preference files
-.vscode
+# VSCode
+*.vscode
+
+# Eclipse
+*.settings*
+*.classpath
+*.project
+*.fxbuild
 
 # test drivers
 CFADataBaseDriver.java
