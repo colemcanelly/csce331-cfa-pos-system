@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.Map;
 import java.util.Vector;
 
-import org.postgresql.util.PSQLException;
+import java.sql.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,7 +95,7 @@ public class ManagerIngredientController implements Initializable{
     @FXML
     void return_home(ActionEvent event) {
     	try {
-			Parent root = FXMLLoader.load(getClass().getResource("fxml/Home.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../fxml/Home.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);

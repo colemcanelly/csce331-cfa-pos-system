@@ -29,9 +29,9 @@ public class Customer extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Customer.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../fxml/Customer.fxml"));
 			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("Customer.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("../css/Customer.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
