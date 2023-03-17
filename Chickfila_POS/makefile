@@ -1,5 +1,10 @@
+
+# Depends on user
 JAVAFX=/mnt/c/Java/javafx-sdk-19-linux
 JAVAFX_LIB=/mnt/c/Java/javafx-sdk-19-linux/lib
+
+
+# Constants
 CTRL_MOD=javafx.controls
 FXML_MOD=javafx.fxml
 
