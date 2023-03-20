@@ -9,7 +9,6 @@ DROP TABLE
     order_items,
     daily_inventory;
 
-
 -- This creates the tables we need and fills the with the generated data
 CREATE TABLE managers (
     manager_id INT PRIMARY KEY,
@@ -77,14 +76,14 @@ CREATE TABLE daily_inventory (
 );
 
 -- Populate new tables with CSV's
-\copy managers from './csv/managers.csv' CSV
-\copy kiosk from './csv/kiosks.csv' CSV
-\copy menu from './csv/menu.csv' CSV
-\copy supply from './csv/supply.csv' CSV
-\copy recipes from './csv/recipes.csv' CSV
+\copy managers from './csv/managers.csv' CSV HEADER
+\copy kiosk from './csv/kiosks.csv' CSV HEADER
+\copy menu from './csv/menu.csv' CSV HEADER
+\copy supply from './csv/supply.csv' CSV HEADER
+\copy recipes from './csv/recipes.csv' CSV HEADER
 \copy orders from './csv/orders.csv' CSV
 \copy order_items from './csv/order_items.csv' CSV
 \copy daily_inventory from './csv/daily_inventory.csv' CSV
 
 -- Set the sequence value for entering new data
- SELECT setval('orders_order_id_seq', (SELECT max(order_id) FROM orders));
+SELECT setval('orders_order_id_seq', (SELECT max(order_id) FROM orders));

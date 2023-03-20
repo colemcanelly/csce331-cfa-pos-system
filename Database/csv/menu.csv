@@ -1,3 +1,4 @@
+menu_item,menu_cat,combo,food_price,img
 ChickFil-A Chicken Sandwich,main,FALSE,3.35,chickfila_chicken_sandwich.jpg
 ChickFil-A Chicken Sandwich Combo,main,TRUE,6.55,chickfila_chicken_sandwich_combo.jpg
 ChickFil-A Chicken Deluxe Sandwich,main,FALSE,4.02,chickfila_chicken_deluxe_sandwich.jpg

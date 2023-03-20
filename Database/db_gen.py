@@ -72,7 +72,7 @@ class Recipe:
 # Order will automatically create `ORDER` and `ORDER_ITEMS`,
 #   which updates the `INVENTORY` through use of the recipe
 class Order:
-    def __init__(self, date: str, time: str, inv_today: list[Inventory]) -> None:
+    def __init__(self, date: str, inv_today: list[Inventory]) -> None:
         global Orders, OrderItems, order_count
         # hopefully this gets be reference, idk
         # kiosk = next(filter(lambda k : k.kiosk_id == kiosk_id, Kiosks))
@@ -84,9 +84,9 @@ class Order:
         self.order_id:      int = order_count        # PK
         self.order_num:     int = (kiosk.kiosk_id * 1000) + kiosk.curr_order_num
         self.order_date:    str = date
-        self.order_time:    str = time
-        self.order_total:  float   = 0.0
-        self.customer_name:   str = random.choice(NAMES)  # random customer
+        self.order_time:    str = ""
+        self.order_total: float = 0.0
+        self.customer_name: str = random.choice(NAMES)  # random customer
         self.kiosk_id:      int = kiosk.kiosk_id
 
         # Generate random order
@@ -114,8 +114,8 @@ class OrderItem:
         self.menu_item_qty: int = int(order_entry[1])
         self.price: float = next(filter(lambda itm : itm.item_name == self.menu_item, MENU)).price
 
-        for recipe in filter(lambda x : x.menu_item == self.menu_item, RECIPES):
-            recipe.updateInventory(self.menu_item_qty, inv_today), 
+        for recipe in filter(lambda item : item.menu_item == self.menu_item, RECIPES):
+            recipe.updateInventory(self.menu_item_qty, inv_today)
             
     def __repr__(self):
         return ",".join([str(val) for val in self.__dict__.values()])
@@ -123,6 +123,8 @@ class OrderItem:
 
 #########################################################################################
 ##      GLOBAL VARS
+OPEN:       float           = 6.00      # 06:00 am
+CLOSE:      float           = 22.50     # 10:30 pm (military)
 Kiosks:     list[Kiosk]
 MENU:       list[MenuItem]
 RECIPES:    list[Recipe]
@@ -140,6 +142,7 @@ order_count: int = 0
 def fetchTable(filename: str, constructor) -> list:
     fin = open(filename, 'r')
     data:list[str] = fin.readlines()
+    data.pop(0)     # Removes header lines
     return list(map(lambda line : constructor(line.replace('\n', '')), data))
 
 def loadTables(date: datetime.date) -> None:
@@ -154,7 +157,6 @@ def loadTables(date: datetime.date) -> None:
     RECIPES     = fetchTable(recipe_file, lambda line : Recipe(line))
     SUPPLIES    = fetchTable(supply_file, lambda line : Supply(line))
     InvTempl    = list(map(lambda s : Inventory(str(date), s.ingredient, 0.0, 0.0, s.restock_quantity, 0.0), SUPPLIES))
-
 
 def unloadTables() -> None:
     global Orders
@@ -184,9 +186,9 @@ def preOpening(date: datetime.date) -> list[Inventory]:
     
     inv_today: list[Inventory] = []
     inv_yesterday: list[Inventory] = InvHistory[-1] if (len(InvHistory) > 0) else InvTempl
-    for i in range(0, len(InvTempl)):
-        qty_sod: float = inv_yesterday[i].qty_eod + inv_yesterday[i].qty_new - inv_yesterday[i].qty_sold
-        inv_today.insert(i, Inventory(str(date), inv_yesterday[i].ingredient, qty_sod, 0.0, 0.0, 0.0))
+    for index, item in enumerate(inv_yesterday):
+        qty_sod: float = item.qty_eod + item.qty_new - item.qty_sold
+        inv_today.insert(index, Inventory(str(date), item.ingredient, qty_sod, 0.0, 0.0, 0.0))
         # print(inv_today[i])
     return inv_today
 
@@ -197,20 +199,25 @@ def postClosing(inv_today: list[Inventory]) -> None:
     InvHistory.append(inv_today)
 
 # Simulate a day, return the total profit
-def simulateDay(date: datetime.date, min_profit: float) -> float:
+def simulateDay(date: datetime.date, min_profit: float, workday_duration: int) -> float:
     profit: float = 0.0
     min_profit += (min_profit * (random.random() / 10))     # random amount over the minimum
-    date_and_time = datetime.datetime(date.year, date.month, date.day, 8, 00) # 8:00 am
     inv_today: list[Inventory] = preOpening(date)
+    orders_today: list[Order] = []
     while (profit < min_profit):
-        date_and_time += datetime.timedelta(seconds=35)
-        Orders.append(Order(str(date), str(date_and_time.time()), inv_today))
-        profit += Orders[-1].order_total
+        orders_today.append(Order(str(date), inv_today))
+        profit += orders_today[-1].order_total
+    date_and_time = datetime.datetime(date.year, date.month, date.day, int(OPEN), 00) # 6:00 am
+    order_iterval_secs: int = int((workday_duration / len(orders_today)) * 60)
+    for order in orders_today:
+        date_and_time += datetime.timedelta(seconds=order_iterval_secs)
+        order.order_time = str(date_and_time.time())
+    Orders.extend(orders_today)
     postClosing(inv_today)
     return profit
 
 # Simulate a week
-def simulateWeek(start_date: datetime.date, min_profit: float) -> float:
+def simulateWeek(start_date: datetime.date, min_profit: float, workday_duration: int) -> float:
     business_days = 6
     daily_profit: float = min_profit / business_days
     date: datetime.date = start_date
@@ -218,7 +225,7 @@ def simulateWeek(start_date: datetime.date, min_profit: float) -> float:
     for _ in range(business_days):
         if (date in GAMEDAYS):
             daily_profit *= 10
-        profit += simulateDay(date, daily_profit)
+        profit += simulateDay(date, daily_profit, workday_duration)
         date += datetime.timedelta(days=1)
     assert date == (start_date + datetime.timedelta(days=6)), "Incomplete weekly simulation"
     return profit
@@ -227,24 +234,18 @@ def simulate(start_date: datetime.date, num_weeks: int, min_profit: float) -> No
     weekly_profit: float = min_profit / num_weeks
     date: datetime.date = start_date
     profit: float = 0.0
-    order_id = 0
-
+    day_duration: int = int((CLOSE - OPEN) * 60)    # duration of a workday (minutes)
     print("\tRunning Simulation")
     for _ in range(num_weeks):
-        profit += simulateWeek(date, weekly_profit)
+        profit += simulateWeek(date, weekly_profit, day_duration)
         date += datetime.timedelta(days=7)
     print(f"\tFinshed.\n\tRevenue = ${profit}")
 
 
 def main() -> None:   
-    start_date: datetime.date = datetime.date(2022, 2, 21)
-    num_weeks = 52
-    profit = 1000000.00
-    print("Beginning simulation . . . ")
-    print(f"\tBegin on {start_date},\n\tSimulate for {num_weeks} weeks,\n\tGenerate a minimum profit of ${profit}")
-    confirm = input("Press enter to confirm: ")
-    if (confirm != ""):
-        exit()
+    start_date: datetime.date = datetime.date(2022, 2, 21)  # 02/21/2022
+    num_weeks: int = 52
+    profit: float = 1_000_000.00
     loadTables(start_date)
     simulate(start_date, num_weeks, profit)
     unloadTables()
