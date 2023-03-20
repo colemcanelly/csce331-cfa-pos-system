@@ -1,8 +1,6 @@
 
 # Depends on user
 JAVAFX=/mnt/c/Java/javafx-sdk-19-linux
-JAVAFX_LIB=/mnt/c/Java/javafx-sdk-19-linux/lib
-
 
 # Constants
 CTRL_MOD=javafx.controls
@@ -16,8 +14,8 @@ PGSQL=postgresql-42.2.8.jar
 PGSQL_DRIVER=-Djdbc.drivers=org.postgresql.Driver
 
 all : clean
-	javac --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ./src/${PACKAGE}/${MAIN}.java ./src/${PACKAGE}/controllers/*.java
-	java -cp ./src:${PQSQL_LOC}/${PGSQL} ${PGSQL_DRIVER} --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ${PACKAGE}.${MAIN}
+	javac --module-path ${JAVAFX}:${JAVAFX}/lib --add-modules ${CTRL_MOD},${FXML_MOD} ./src/${PACKAGE}/${MAIN}.java ./src/${PACKAGE}/controllers/*.java
+	java -cp ./src:${PQSQL_LOC}/${PGSQL} ${PGSQL_DRIVER} --module-path ${JAVAFX}:${JAVAFX}/lib --add-modules ${CTRL_MOD},${FXML_MOD} ${PACKAGE}.${MAIN}
 
 clean :
 	@rm -f ./src/${PACKAGE}/*.class
