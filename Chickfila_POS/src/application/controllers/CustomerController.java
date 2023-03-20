@@ -133,7 +133,7 @@ public class CustomerController implements Initializable {
 		dateLbl.setText(dt_arr[0]);
 		timeLbl.setText(dt_arr[1]);
 		
-		//Image cfa_logo = new Image("cfa-logo.png");
+		//Image cfa_logo = new Image("../../img/cfa-logo.png");
 		
 		//cfaLogoImg.setImage(cfa_logo);
 		
