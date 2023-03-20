@@ -25,4 +25,7 @@ In Phase Four, we are looking into adding onto our current system in order to ma
 * Do the Excess Report
 
 ## Ryan
-* Restcok Reports
+* Sales Report
+
+## Cole
+* Restock Report
