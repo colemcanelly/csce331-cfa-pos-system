@@ -8,7 +8,7 @@ In phase 3 of project 2, we implemented a low level graphical interface that int
 
 * Weston Cadena - Weston created the ManagerIngredient Interface. Here, the manager can see each ingredient item along with its current supply, and has the ability to update or order a new amount of the ingredient. The changes will be displayed both in the front end as well as in the database
 
-* Ryan Paul - Weston created the ManagerMenu Interface. Here, the manager can see each Menu Item along with its current cost, and has the ability to update or add a new item to the menu. The changes will be displayed both in the front end as well as in the database
+* Ryan Paul - Ryan created the ManagerMenu Interface. Here, the manager can see each Menu Item along with its current cost, and has the ability to update or add a new item to the menu. The changes will be displayed both in the front end as well as in the database
 
 ## Whats Next 
 In Phase Four, we are looking into adding onto our current system in order to make it more usable and advanced. In phase 4, we will add the ability to create graphs that will display trends over time of different menu items and ingredients. In addition, we will add onto our current menu, separating out each individual catagory (ex: breakfeast, dessert) and also add a seasonal item to the menu.
