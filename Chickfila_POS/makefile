@@ -16,9 +16,9 @@ PGSQL=postgresql-42.2.8.jar
 PGSQL_DRIVER=-Djdbc.drivers=org.postgresql.Driver
 
 all : clean
-	javac --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ./${PACKAGE}/${MAIN}.java ./${PACKAGE}/controllers/*.java
-	java -cp .:${PQSQL_LOC}/${PGSQL} ${PGSQL_DRIVER} --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ${PACKAGE}.${MAIN}
+	javac --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ./src/${PACKAGE}/${MAIN}.java ./src/${PACKAGE}/controllers/*.java
+	java -cp ./src:${PQSQL_LOC}/${PGSQL} ${PGSQL_DRIVER} --module-path ${JAVAFX}:${JAVAFX_LIB} --add-modules ${CTRL_MOD},${FXML_MOD} ${PACKAGE}.${MAIN}
 
 clean :
-	@rm -f ./${PACKAGE}/*.class
-	@rm -f ./${PACKAGE}/controllers/*.class
+	@rm -f ./src/${PACKAGE}/*.class
+	@rm -f ./src/${PACKAGE}/controllers/*.class
