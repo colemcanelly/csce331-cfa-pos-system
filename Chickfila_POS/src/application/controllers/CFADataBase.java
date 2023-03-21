@@ -100,6 +100,32 @@ public class CFADataBase {
         return table;
     }
 
+    public Map<String, Map<String, String>> getRestockReport()
+    {
+        Map<String, Map<String, String>> table = null;
+        try {
+            String restock_report = 
+            """
+                SELECT
+                    today.ingredient AS low_items,
+                    today.qty_curr AS quantity,
+                    supply.threshold AS threshold
+                FROM (	
+                    SELECT DISTINCT ON (ingredient)
+                        ingredient,
+                        (qty_sod + qty_new - qty_sold) AS qty_curr
+                    FROM daily_inventory
+                    ORDER  BY ingredient, entry_date DESC) AS today
+                INNER JOIN supply ON today.ingredient = supply.ingredient AND 500 >= today.qty_curr;
+            """;
+            table = rsToMap(psql.select(restock_report), SUPPLY_PKS);
+        } catch (Exception e) {
+            System.out.println("Error fetching restock report");
+            return null;
+        }
+        return table;
+    }
+
     public Map<String, Map<String, String>> getSalesReport(String start_date, String end_date, String start_time = "06:00:00", String end_time = "22:30:00")
     {
         Map<String, Map<String, String>> table = null;
