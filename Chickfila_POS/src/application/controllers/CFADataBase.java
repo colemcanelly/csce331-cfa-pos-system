@@ -104,20 +104,18 @@ public class CFADataBase {
     {
         Map<String, Map<String, String>> table = null;
         try {
-            String restock_report = 
-            """
-                SELECT
-                    today.ingredient AS low_items,
-                    today.qty_curr AS quantity,
-                    supply.threshold AS threshold
-                FROM (	
-                    SELECT DISTINCT ON (ingredient)
-                        ingredient,
-                        (qty_sod + qty_new - qty_sold) AS qty_curr
-                    FROM daily_inventory
-                    ORDER  BY ingredient, entry_date DESC) AS today
-                INNER JOIN supply ON today.ingredient = supply.ingredient AND 500 >= today.qty_curr;
-            """;
+            String restock_report = ""
+                .concat("SELECT ")
+                .concat(    "today.ingredient AS low_items, ")
+                .concat(    "today.qty_curr AS quantity, ")
+                .concat(    "supply.threshold AS threshold ")
+                .concat("FROM (	")
+                .concat(    "SELECT DISTINCT ON (ingredient) ")
+                .concat(        "ingredient, ")
+                .concat(        "(qty_sod + qty_new - qty_sold) AS qty_curr ")
+                .concat(    "FROM daily_inventory ")
+                .concat(    "ORDER  BY ingredient, entry_date DESC) AS today ")
+                .concat("INNER JOIN supply ON today.ingredient = supply.ingredient AND 500 >= today.qty_curr;");
             table = rsToMap(psql.select(restock_report), SUPPLY_PKS);
         } catch (Exception e) {
             System.out.println("Error fetching restock report");
@@ -126,18 +124,27 @@ public class CFADataBase {
         return table;
     }
 
-    public Map<String, Map<String, String>> getSalesReport(String start_date, String end_date, String start_time = "06:00:00", String end_time = "22:30:00")
+    public Map<String, Map<String, String>> getSalesReport(String start_date, String end_date)
+    {
+        return getSalesReport(start_date, end_date, "06:00:00", "22:30:00");
+    }
+
+    public Map<String, Map<String, String>> getSalesReport(String start_date, String end_date, String start_time, String end_time)
     {
         Map<String, Map<String, String>> table = null;
         try {
-            String sales_report_by_item = 
-                "SELECT COALESCE(menu.menu_item, 'Total') AS menu_item, COALESCE(SUM(order_items.menu_item_quantity * order_items.food_price), 0) AS total_revenue
-                FROM orders
-                JOIN menu ON 1=1  -- joining all records from the menu table
-                LEFT JOIN order_items ON orders.order_id = order_items.order_id AND menu.menu_item = order_items.menu_item
-                WHERE orders.order_date BETWEEN " + start_date + " AND " + end_date + "
-                AND orders.order_time BETWEEN " + start_time + " AND " + end_time + "
-                GROUP BY ROLLUP(menu.menu_item);";
+            String sales_report_by_item = ""
+                .concat("SELECT ")
+                .concat(    "COALESCE(menu.menu_item, 'Total') AS menu_item, ")
+                .concat(    "COALESCE(SUM(order_items.menu_item_quantity * order_items.food_price), 0) AS total_revenue ")
+                .concat("FROM orders ")
+                .concat("JOIN menu ON 1=1  -- joining all records from the menu table ")
+                .concat("LEFT JOIN order_items ON orders.order_id = order_items.order_id AND menu.menu_item = order_items.menu_item ")
+                .concat("WHERE ")
+                .concat(    "orders.order_date BETWEEN '" + start_date + "' AND '" + end_date + "' ")
+                .concat(    "AND ")
+                .concat(    "orders.order_time BETWEEN '" + start_time + "' AND '" + end_time + "' ")
+                .concat("GROUP BY ROLLUP(menu.menu_item); ");
             table = rsToMap(psql.select(sales_report_by_item), MENU_PKS);
         } catch (Exception e) {
             System.out.println("Error fetching sales report");
