@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 
 public class ManagerInv implements Initializable {
 
-    private PostgreSQL psql = new PostgreSQL();
     private CFADataBase db = new CFADataBase();
 
     @FXML
@@ -116,7 +115,7 @@ public class ManagerInv implements Initializable {
             String qty_eod = item.get("qty_eod");
             String curr_date = item.get("entry_date");
             currDateString = curr_date;
-            System.out.println("Ingredient: " + ingredeint + ", qty_eod: " + qty_eod + ", curr_date: " + curr_date);
+            // System.out.println("Ingredient: " + ingredeint + ", qty_eod: " + qty_eod + ", curr_date: " + curr_date);
             IngredientItem IngredientItem = new IngredientItem(ingredeint, qty_eod, curr_date);
             Ingredient_Supply_List.add(IngredientItem);
         }
@@ -137,7 +136,7 @@ public class ManagerInv implements Initializable {
         String query = "UPDATE daily_inventory SET ingredient = '" + ingredient_box.getText() + "', qty_eod = '" + updated_valFloat  +
         		"' WHERE ingredient = '" + ingredient_box.getText() + "' AND entry_date = '" + currDateString  + "';";
         System.out.print(query);
-        psql.query(query);
+        db.psql.query(query);
         ingredient_table.setItems(getInventoryList());
     }
     

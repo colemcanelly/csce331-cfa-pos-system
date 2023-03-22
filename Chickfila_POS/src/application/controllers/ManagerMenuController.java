@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 
 public class ManagerMenuController implements Initializable {
 
-    private PostgreSQL psql = new PostgreSQL();
     private CFADataBase db = new CFADataBase();
 
     @FXML
@@ -153,7 +152,7 @@ public class ManagerMenuController implements Initializable {
     private void addMenuItem(){
         String query = "INSERT INTO menu (menu_item,food_price,combo,menu_cat) VALUES ('"+ item_box.getText() +"', "
                 + Float.parseFloat(price_box.getText())+ ", '" + Boolean.parseBoolean(combo_box.getText()) + "', '"+ category_box.getText() +"');";
-        psql.query(query);
+        db.psql.query(query);
         menu_table.setItems(getMenuList());
     }
 
@@ -167,13 +166,13 @@ public class ManagerMenuController implements Initializable {
         String query = "UPDATE menu SET menu_item  = '" + item_box.getText() + "', food_price = " + Float.parseFloat(price_box.getText()) +
                 ", combo =  '" + Boolean.parseBoolean(combo_box.getText()) + "' , menu_cat =  '" + category_box.getText()
                 + "' WHERE menu_item = '" + item_box.getText() + "';";
-        psql.query(query);
+        db.psql.query(query);
         menu_table.setItems(getMenuList());
     }
 
     private void removeMenuItem(){
         String query = "DELETE FROM menu WHERE menu_item  = '" + item_box.getText() + "';";
-        psql.query(query);
+        db.psql.query(query);
         menu_table.setItems(getMenuList());
     }
 

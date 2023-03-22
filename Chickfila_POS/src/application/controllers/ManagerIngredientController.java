@@ -128,7 +128,6 @@ public class ManagerIngredientController implements Initializable{
     
     
     // Initialization of backend classes
-    PostgreSQL psql = new PostgreSQL();
     CFADataBase database = new CFADataBase();
     
 	
