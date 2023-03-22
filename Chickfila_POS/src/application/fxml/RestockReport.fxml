@@ -51,7 +51,7 @@
                         <Insets right="2.5" />
                      </HBox.margin>
                   </VBox>
-                  <Button fx:id="refresh_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="90.0" text="Refresh">
+                  <Button fx:id="refresh_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#refreshButton" prefHeight="23.0" prefWidth="90.0" text="Refresh">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -63,11 +63,11 @@
             </HBox>
             <HBox alignment="CENTER" GridPane.rowIndex="1">
                <children>
-                  <TableView fx:id="restock_table" minHeight="-Infinity" onMouseClicked="#handleMouseAction" prefHeight="330.0">
+                  <TableView fx:id="restock_table" minHeight="-Infinity" prefHeight="330.0">
                      <columns>
-                        <TableColumn fx:id="col_ingredient" maxWidth="300.0" prefWidth="283.6000061035156" text="X Report Column" />
-                        <TableColumn fx:id="col_qty_curr" maxWidth="200.0" prefWidth="158.00006103515625" text="X Report Column" />
-                        <TableColumn fx:id="col_threshold" maxWidth="200.0" prefWidth="157.199951171875" text="X Report Column" />
+                        <TableColumn fx:id="col_ingredient" maxWidth="300.0" prefWidth="283.6000061035156" text="Ingredient" />
+                        <TableColumn fx:id="col_qty_curr" maxWidth="200.0" prefWidth="158.00006103515625" text="Quantity" />
+                        <TableColumn fx:id="col_threshold" maxWidth="200.0" prefWidth="157.199951171875" text="Threshold" />
                      </columns>
                   </TableView>
                </children>

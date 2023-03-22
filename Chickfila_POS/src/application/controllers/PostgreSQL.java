@@ -63,7 +63,7 @@ public class PostgreSQL {
             // send statement to DBMS
             result = stmts.get(stmts.size() - 1).executeQuery(sql);
         } catch (Exception e) {
-            System.out.println("Error accessing Database.");
+            System.out.println("Error accessing Database [PostgreSQL l:66]");
         }
         return result;
     }
@@ -82,7 +82,7 @@ public class PostgreSQL {
             // send statement to DBMS
             rows = s.executeUpdate(sql);
         } catch (Exception e) {
-            System.out.println("Error accessing Database.");
+            System.out.println("Error accessing Database [PostgreSQL l:85]");
             return -1;
         }
         return rows;

@@ -106,17 +106,17 @@ public class CFADataBase {
         try {
             String restock_report = ""
                 .concat("SELECT ")
-                .concat(    "today.ingredient AS low_items, ")
+                .concat(    "today.ingredient AS ingredient, ")
                 .concat(    "today.qty_curr AS quantity, ")
                 .concat(    "supply.threshold AS threshold ")
                 .concat("FROM (	")
                 .concat(    "SELECT DISTINCT ON (ingredient) ")
                 .concat(        "ingredient, ")
-                .concat(        "(qty_sod + qty_new - qty_sold) AS qty_curr ")
+                .concat(        "qty_eod AS qty_curr ")
                 .concat(    "FROM daily_inventory ")
                 .concat(    "ORDER  BY ingredient, entry_date DESC) AS today ")
                 .concat("INNER JOIN supply ON today.ingredient = supply.ingredient AND supply.threshold >= today.qty_curr;");
-            table = rsToMap(psql.select(restock_report), SUPPLY_PKS);
+            table = rsToMapTwo(psql.select(restock_report), SUPPLY_PKS);
         } catch (Exception e) {
             System.out.println("Error fetching restock report");
             return null;
@@ -180,7 +180,7 @@ public class CFADataBase {
                 .concat(    "AND ")
                 .concat(    "orders.order_time BETWEEN '" + start_time + "' AND '" + end_time + "' ")
                 .concat("GROUP BY ROLLUP(menu.menu_item); ");
-            table = rsToMap(psql.select(sales_report_by_item), MENU_PKS);
+            table = rsToMapTwo(psql.select(sales_report_by_item), MENU_PKS);
         } catch (Exception e) {
             System.out.println("Error fetching sales report");
             return null;
@@ -262,7 +262,7 @@ public class CFADataBase {
             }
             rs.beforeFirst();
         } catch (Exception e) {
-            System.out.println("Error accessing Database.");
+            System.out.println("Error accessing Database [CFADataBase l:265]");
         }
         return results;
     }
@@ -293,7 +293,7 @@ public class CFADataBase {
             }
            // rs.beforeFirst();
         } catch (Exception e) {
-            System.out.println("Error accessing Database. 1");
+            System.out.println("Error accessing Database [CFADataBase l:296]");
         }
         return results;
     }
