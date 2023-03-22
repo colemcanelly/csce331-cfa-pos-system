@@ -115,10 +115,45 @@ public class CFADataBase {
                 .concat(        "(qty_sod + qty_new - qty_sold) AS qty_curr ")
                 .concat(    "FROM daily_inventory ")
                 .concat(    "ORDER  BY ingredient, entry_date DESC) AS today ")
-                .concat("INNER JOIN supply ON today.ingredient = supply.ingredient AND 500 >= today.qty_curr;");
+                .concat("INNER JOIN supply ON today.ingredient = supply.ingredient AND supply.threshold >= today.qty_curr;");
             table = rsToMap(psql.select(restock_report), SUPPLY_PKS);
         } catch (Exception e) {
             System.out.println("Error fetching restock report");
+            return null;
+        }
+        return table;
+    }
+
+    public Map<String, Map<String, String>> getExcessReport(LocalDate date)
+    {
+        Map<String, Map<String, String>> table = null;
+        try {
+        	String excess_report = "WITH cte AS (\r\n"
+    	   			+ "    SELECT \r\n"
+    	   			+ "        ingredient, \r\n"
+    	   			+ "        qty_sod, \r\n"
+    	   			+ "        SUM(qty_sold) as total_qty_sold, \r\n"
+    	   			+ "        ((qty_sod - SUM(qty_sold))/qty_sod)*100 as percentage_diff\r\n"
+    	   			+ "    FROM \r\n"
+    	   			+ "        daily_inventory\r\n"
+    	   			+ "    WHERE \r\n"
+    	   			+ "        entry_date >= '" + date + "' \r\n"
+    	   			+ "    GROUP BY \r\n"
+    	   			+ "        ingredient, qty_sod\r\n"
+    	   			+ ")\r\n"
+    	   			+ "SELECT \r\n"
+    	   			+ "    ingredient, \r\n"
+    	   			+ "    qty_sod, \r\n"
+    	   			+ "    total_qty_sold, \r\n"
+    	   			+ "    percentage_diff\r\n"
+    	   			+ "FROM \r\n"
+    	   			+ "    cte\r\n"
+    	   			+ "WHERE \r\n"
+    	   			+ "    percentage_diff > 10;";
+        	System.out.println(excess_report);
+            table = rsToMapTwo(psql.select(excess_report), SUPPLY_PKS);
+        } catch (Exception e) {
+            System.out.println("Error fetching excess report");
             return null;
         }
         return table;
@@ -228,6 +263,37 @@ public class CFADataBase {
             rs.beforeFirst();
         } catch (Exception e) {
             System.out.println("Error accessing Database.");
+        }
+        return results;
+    }
+
+    private static Map<String, Map<String, String>> rsToMapTwo(ResultSet rs, List<String> pk_names)
+    {
+        Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>();
+        try {
+        	
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
+            while (rs.next()) {
+            	
+                //rs.refreshRow();
+               
+                Map<String, String> row = new HashMap<String, String>();
+              
+                String pk = "";
+                for (int i = 1; i <= columns; i++) {
+                    String col_name = md.getColumnName(i);
+                    String attribute = rs.getString(i);
+                    //System.out.println("Col_name = " + col_name + ", attribute = " + attribute);
+                    if (pk_names.contains(col_name)) pk += attribute;
+                    row.put(col_name, attribute);
+                    
+                }
+                results.put(pk, row);
+            }
+           // rs.beforeFirst();
+        } catch (Exception e) {
+            System.out.println("Error accessing Database. 1");
         }
         return results;
     }
