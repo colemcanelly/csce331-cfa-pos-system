@@ -1,16 +1,20 @@
 package application.controllers;
 
+
+/**
+ * Class for use in the 'ObservableList' in RestockReport.java to present data to the frontend
+ * 
+ * @author  colemcanelly
+ */
 public class RestockItem {
     private String ingredient;
     private String quantity;
     private String threshold;
-    private String percent_difference;
 
-    public RestockItem(String ingredient, String quantity, String threshold ) {
+    public RestockItem(String ingredient, String quantity, String threshold) {
         this.ingredient = ingredient;
         this.quantity = quantity;
         this.threshold = threshold;
-        this.percent_difference = percent_difference;
     }
 
     public String getIngredient() {

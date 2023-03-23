@@ -26,6 +26,13 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.time.LocalTime;  
 
+
+/**
+ * Controller for the Restock Report page (RestockReport.fxml),
+ * used to present the items that are lower than the threshold to the manger.
+ * 
+ * @author  colemcanelly
+ */
 public class RestockReport implements Initializable {
 
     private CFADataBase db = new CFADataBase();
@@ -82,13 +89,23 @@ public class RestockReport implements Initializable {
         refreshTable();
     }
     
+    /**
+     * Refreshes the Restock report table on screen, and sets the time of query on screen for the user to reference.
+     * 
+     * @return N/A
+     */
     private void refreshTable()
     {
         restock_table.setItems(getLowItemsList());
         time_refreshed.setText(LocalTime.now().toString());
-        System.out.println("refreshed");
+        // System.out.println("refreshed");
     }
     
+    /**
+     * Calls backend function to get table of items to restock, and converts it to an observable list of RestockItems
+     * 
+     * @return ObservableList of items to in need of restocking
+     */
     public ObservableList<RestockItem> getLowItemsList()
     {
         ObservableList<RestockItem> low_items_list = FXCollections.observableArrayList();
@@ -98,7 +115,7 @@ public class RestockReport implements Initializable {
             String quantity = item.get("quantity");
             String threshold = item.get("threshold");
 
-            System.out.println("Ingredient: " + ingredient + ", quantity: " + quantity + ", threshold: " + threshold);
+            // System.out.println("Ingredient: " + ingredient + ", quantity: " + quantity + ", threshold: " + threshold);
             
             RestockItem low_item = new RestockItem(ingredient, quantity, threshold);
             low_items_list.add(low_item);
@@ -109,7 +126,7 @@ public class RestockReport implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        System.out.println("initializing");
+        // System.out.println("initializing");
     	col_ingredient.setCellValueFactory(new PropertyValueFactory<>("ingredient"));
     	col_qty_curr.setCellValueFactory(new PropertyValueFactory<>("quantity"));
     	col_threshold.setCellValueFactory(new PropertyValueFactory<>("threshold"));
@@ -126,7 +143,7 @@ public class RestockReport implements Initializable {
                 restock_table.getColumns().add(col_threshold);
             }
             refreshTable();
-            System.out.println("initialized");
+            // System.out.println("initialized");
         }
         else {
             System.out.println("restock_table is null!");

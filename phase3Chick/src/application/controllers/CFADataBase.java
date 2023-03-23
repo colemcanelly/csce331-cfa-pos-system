@@ -46,8 +46,8 @@ public class CFADataBase {
     /**
      * Gets the menu in a dictionary of key-value pairs, where key = primary key
      *      ex. {{"menu_item", "ChickFil-A Chicken Sandwich"}, ... }
-     * @param t     The desired table to query   
-     * @return      Dictionary of menu entries (dictionaries)
+     * @param  __table  The desired table to query   
+     * @return          Dictionary of entries in the requested table (dictionaries)
      */
     public Map<String, Map<String, String>> get(Table __table) {
         Map<String, Map<String, String>> table = null;
@@ -87,6 +87,11 @@ public class CFADataBase {
         return table;
     }
 
+    /**
+     * Gets the inventory for each item that is in the most recent day entered into the daily_inventory table.
+     * 
+     * @return Table of the most recent inventory report. (Dictionary of Dictionaries)
+     */
     public Map<String, Map<String, String>> getNewestInv()
     {
         Map<String, Map<String, String>> table = null;
@@ -100,6 +105,12 @@ public class CFADataBase {
         return table;
     }
 
+    /**
+     * Gets a collection of items whose current quantity is lower than the specified threshold.
+     * Presents the manager with a view of all items that are currently low and in need of restocking.
+     * 
+     * @return Table of current low items that need restocking. (Dictionary of Dictionaries)
+     */
     public Map<String, Map<String, String>> getRestockReport()
     {
         Map<String, Map<String, String>> table = null;
@@ -124,6 +135,13 @@ public class CFADataBase {
         return table;
     }
 
+    /**
+     * Gets a collection of items who have only been selling <10% of their starting quantity each day.
+     * Presents the manager with a table of items which are retaining extreme excess at the end of each specified day.
+     * 
+     * @param   date    Which day to generate the excess report for
+     * @return Table of the items with excess. (Dictionary of Dictionaries)
+     */
     public Map<String, Map<String, String>> getExcessReport(LocalDate date)
     {
         Map<String, Map<String, String>> table = null;
@@ -164,6 +182,16 @@ public class CFADataBase {
         return getSalesReport(start_date, end_date, "06:00:00", "22:30:00");
     }
 
+    /**
+     * Generates a sales report given starting date and time, and ending date and time.
+     * 
+     * @param   start_date  Date to start the sales report on
+     * @param   end_date    Date to end the sales report on
+     * @param   start_time  Time of day during the `start_date` to start the report
+     * @param   end_time    Time of day during the `end_date` to end the report
+     * 
+     * @return Sales report in table format (Dictionary of Dictionaries)
+     */
     public Map<String, Map<String, String>> getSalesReport(String start_date, String end_date, String start_time, String end_time)
     {
         Map<String, Map<String, String>> table = null;
@@ -187,9 +215,10 @@ public class CFADataBase {
     /**
      * Used to execute an insertion query from our database (CREATE, UPDATE, INSERT, etc.).
      * @param ordered_items List of "menu_item" strings, ie the name of the item to order
-     * @param customer_name  Customer Name
-     * @param kiosk_id  Integer ID of the kiosk that created the order
-     * @return      Number of rows impacted by your query
+     * @param customer_name Customer Name
+     * @param kiosk_id      Integer ID of the kiosk that created the order
+     * @param order_num     The number of the order being created
+     * @return  Boolean to represent insertion sucess or failure.
      */
     public boolean newOrder(ArrayList<String> ordered_items, String customer_name, int kiosk_id, int order_num)
     {
@@ -238,6 +267,13 @@ public class CFADataBase {
         return true;
     }
 
+    /**
+     * Converts a JDBC Result Set to a Java Dictionary of Dictionaries given primary keys for the table
+     * 
+     * @param   rs          ResultSet to convert
+     * @param   pk_names    List of primary keys for the Set in string format
+     * @return  Dictionary of Dictionaries for the given result set
+     */
     private static Map<String, Map<String, String>> rsToMap(ResultSet rs, List<String> pk_names)
     {
         Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>();
@@ -263,6 +299,14 @@ public class CFADataBase {
         return results;
     }
 
+    /**
+     * OVERLOAD
+     * Converts a JDBC Result Set to a Java Dictionary of Dictionaries given primary keys for the table
+     * 
+     * @param   rs          ResultSet to convert
+     * @param   pk_names    List of primary keys for the Set in string format
+     * @return  Dictionary of Dictionaries for the given result set
+     */
     private static Map<String, Map<String, String>> rsToMapTwo(ResultSet rs, List<String> pk_names)
     {
         Map<String, Map<String, String>> results = new HashMap<String, Map<String, String>>();
