@@ -9,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.0          (the version of the package this class was first added to)
+ * Used to controll the Home GUI landing page
+ */
 public class HomeController {
 	
 	private Stage stage;

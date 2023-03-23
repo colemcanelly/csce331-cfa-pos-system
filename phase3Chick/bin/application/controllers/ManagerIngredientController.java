@@ -32,10 +32,11 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import static java.util.Map.entry;
 /**
- * 
- * @author Weston Cadena
- *	Controller Class controls the Manager Side of the interface.
- *	The Manager will be able to look at trends, and update values
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.1          (the version of the package this class was first added to)
+ * ManagerIngredientController contains the java needed to interact with the manager inventory fxml file. The manager
+ * will be able to update each ingredient's current amount
  */
 public class ManagerIngredientController implements Initializable{
 	
@@ -92,6 +93,14 @@ public class ManagerIngredientController implements Initializable{
     @FXML
     private LineChart<?, ?> menu_graph;
 
+
+	/**
+	 * return_home sets the stage back to the home.fxml
+	 *
+	 *
+	 * @param event action event that happens when the back button is interacted with in the fxml file
+	 * @since             1.1
+	 */
     @FXML
     void return_home(ActionEvent event) {
     	try {
@@ -132,6 +141,12 @@ public class ManagerIngredientController implements Initializable{
     CFADataBase database = new CFADataBase();
     
 	
+	/**
+	 * Pouplates the hashmaps needed to populate the table on the front end, uses functions from the PostgreSQL.java file
+	 *
+	 *
+	 * @since             1.1
+	 */
 	public ManagerIngredientController()
     {
 		// Populate the Hashmaps
@@ -141,6 +156,14 @@ public class ManagerIngredientController implements Initializable{
         
     }
 	
+	/**
+	 * Initalizes the 
+	 *
+	 *
+	 * @param arg0 URL arguement passed in when originally initialized
+	 * @param arg1 Rescources passed in to correctly launch the fxml file
+	 * @since             1.1
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Populate the two Choice Boxes
@@ -162,8 +185,13 @@ public class ManagerIngredientController implements Initializable{
 		//ingredient_choice_box.setOnAction(new );
 	}
 	
+
 	/**
 	 * This Function Initializes and populates the ingredient graph. It will Update the graph based on the selection that the manager inputs
+	 *
+	 *
+	 * @param event Arguements that are passed in via command line when running code
+	 * @since             1.1
 	 */
     @FXML
     void updateSupplyGraph(MouseEvent event) {
@@ -198,12 +226,18 @@ public class ManagerIngredientController implements Initializable{
 		}
     	//restock_List.getItems().addAll("some new element");
     }
-    
+
+
     private void displayCurrentAmount() {
     	String ingredient_selected = ingredient_choice_box1.getValue();
     }
     
-   
+	/**
+	 * This Function Initializes the supply graph when first called
+	 *
+	 *
+	 * @since             1.1
+	 */
 	private void iniSupplyGraph() {
 		XYChart.Series series = new XYChart.Series();
 		long millis=System.currentTimeMillis();  

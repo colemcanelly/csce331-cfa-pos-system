@@ -22,6 +22,14 @@ import java.sql.Date;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
+/**
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.1          (the version of the package this class was first added to)
+ * ManagerIngredientController contains the java needed to interact with the manager inventory fxml file. The manager
+ * will be able to update each ingredient's current amount
+ */
 public class ManagerInv implements Initializable {
 
     private PostgreSQL psql = new PostgreSQL();
@@ -70,6 +78,14 @@ public class ManagerInv implements Initializable {
 	
 	private String currDateString;
     
+
+    /**
+	 * Function to return to the previous fxml file in the project. In this instance it is Report.fxml
+	 *
+	 *
+	 * @param event Action event when a button is pressed
+	 * @since             1.1
+	 */
     @FXML
     void GoBack(ActionEvent event) {
     	try {
@@ -87,7 +103,13 @@ public class ManagerInv implements Initializable {
         }
     }
 
-
+   /**
+    * Collects date after the calulate excess button is pressed
+    *
+    *
+    * @param event Action event when a button is pressed
+    * @since             1.1
+    */
     @FXML
     void handleButtonAction(ActionEvent event) {
         if(event.getSource() == update_button){
@@ -105,7 +127,15 @@ public class ManagerInv implements Initializable {
     }
 
 
-
+/**
+ * Creates an observable list to display in the table.
+ *
+ * <p>Use {@link #doMove(int fromFile, int fromRank, int toFile, int toRank)} to move a piece.
+ *
+ * @param date date used for the sql command
+ * @return            obserable list to display in the GUI
+ * @since             1.1
+ */
     public ObservableList<IngredientItem> getInventoryList(){
     	
         ObservableList<IngredientItem> Ingredient_Supply_List = FXCollections.observableArrayList();
@@ -124,12 +154,13 @@ public class ManagerInv implements Initializable {
         return Ingredient_Supply_List;
     }
 
-
     /**
-     * This function is implemented whenever the update button is clicked on. This updates the menu given the current menu item with
-     * its price.
-     * @author Ryan Paul
+     * Updates the table with the obserable list created by getInventoryList
+     *
+     * @param date date used for sql command to get Ingredient items
+     * @since             1.1
      */
+    privat
    private void updateSupply(){
 //        String old_value = ingredient_box.getText();
 	   Float updated_valFloat = Float.parseFloat(supply_box.getText()) + Float.parseFloat(category_box.getText());
