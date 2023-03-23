@@ -149,7 +149,7 @@ public class CFADataBase {
     	   			+ "FROM \r\n"
     	   			+ "    cte\r\n"
     	   			+ "WHERE \r\n"
-    	   			+ "    percentage_diff > 10;";
+    	   			+ "    percentage_diff > 90;";
         	System.out.println(excess_report);
             table = rsToMapTwo(psql.select(excess_report), SUPPLY_PKS);
         } catch (Exception e) {
