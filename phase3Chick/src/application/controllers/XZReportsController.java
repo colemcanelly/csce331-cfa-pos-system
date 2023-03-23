@@ -36,6 +36,22 @@ public class XZReportsController {
 	private Scene scene;
 	private Parent rootParent;
     @FXML
+
+		/**
+   * Goes to the previouslt accessed GUI (in this case, the Home window)
+   * upon clicking the button associated here
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  url   an absolute URL giving the base location of the image
+   * @param  name  the location of the image, relative to the url argument
+   * @return the image at the specified URL
+   * @throws MalformedURLException  if the input url is formatted incorrectly
+   * @see    Image
+   */
     void SwitchToHome(ActionEvent event) {
     	try {
  		   
@@ -56,6 +72,18 @@ public class XZReportsController {
     	
     }
 
+	/**
+   * Pulls from the database and performs all necessary queries
+   * to retrieve and display information about sales since the last Z Report as well
+   * as the time of the last Z Report
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  event   clicking the generateXReportBtn
+   */
     @FXML
     void generateXReport(MouseEvent event) {
     	String text_return = "X REPORT GENERATION\n------------------";
@@ -107,6 +135,16 @@ public class XZReportsController {
         reportTextArea.setText(text_return);
     }
 
+	/**
+   * Accesses the database and performs all necessary queries 
+   * to return the sales report since the last closed Z Report
+   * (similar to the X Report Generation)
+   * Furthermore, it stores the information about the interval of 
+   * time the Z Report covers and the sales for the interval, so that
+   * it can be accessed by future X and Z Reports
+   * <p>
+   * @param  event   clicking the generateZReportBtn
+   */
     @FXML
     void generateZReport(MouseEvent event) {
     	String text_return = "Z REPORT GENERATION\n-----------------";

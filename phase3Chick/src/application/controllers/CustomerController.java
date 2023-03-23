@@ -43,7 +43,22 @@ import javafx.stage.Stage;
 
 import java.lang.Float;
 
-
+/**
+   * Returns an Image object that can then be painted on the screen.
+   * The url argument must specify an absolute <a href="#{@link}">{@link URL}</a>. The name
+   * argument is a specifier that is relative to the url argument.
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  url   an absolute URL giving the base location of the image
+   * @param  name  the location of the image, relative to the url argument
+   * @return the image at the specified URL
+   * @throws MalformedURLException  if the input url is formatted incorrectly
+   * @see    Image
+   */
 
 public class CustomerController implements Initializable {
 	
@@ -52,6 +67,23 @@ public class CustomerController implements Initializable {
 	private int receiptIndex = 0;
 	private Float totalPrice = (float) 0.0;
 	
+	/**
+   * Returns an BorderPane object that can then be added to the VBox in the GUI.
+   * It does so by adding a label for the name of the food item and then the price
+   * of the food item and returning the BorderPane with its children.
+   * It also declares an event handler for the newly created BorderPanes, so that
+   * when they are clicked, there is functionality to add the item's name and price
+   * to the receipt of the GUI.
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  foodItem  the name of the food item to be added to the menu
+   * @param  price  the price of above food item
+   * @return a Border Pane with both above labels and functionality to transfer data
+   */
 	public BorderPane createMenuItem(String foodItem, String price) {	// TODO: add image url argument
 		
 		BorderPane to_return = new BorderPane();
@@ -104,8 +136,24 @@ public class CustomerController implements Initializable {
 		return to_return;
 	}
 	
+	@FXML
 	private Node oldNode;
-    @FXML
+
+	/**
+   * Goes to the previouslt accessed GUI (in this case, the Home window)
+   * upon clicking the button associated here
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  url   an absolute URL giving the base location of the image
+   * @param  name  the location of the image, relative to the url argument
+   * @return the image at the specified URL
+   * @throws MalformedURLException  if the input url is formatted incorrectly
+   * @see    Image
+   */
     void GoBack(ActionEvent event) {
   		   
     		try {
@@ -124,7 +172,19 @@ public class CustomerController implements Initializable {
  		  
     }
 	
-	
+	/**
+   * Executes a set of actions upon the loading and display of the GUI
+   * Loads the current date and time in the bottom right of the GUI and
+   * fills out the menu with all items in the MenuItem table of the database.
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  url   an absolute URL giving the base location of the GUI
+   * @param  ResourceBundle  not quite sure what this is
+   */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -344,6 +404,17 @@ public class CustomerController implements Initializable {
     	
     }
 
+	/**
+   * Clears receipt of any added items before submitting to database
+   * based on button click, and clears all previously seet values
+   * <p>
+   * This method always returns immediately, whether or not the
+   * image exists. When this applet attempts to draw the image on
+   * the screen, the data will be loaded. The graphics primitives
+   * that draw the image will incrementally paint on the screen.
+   *
+   * @param  event   clicking the removeItem button
+   */
     @FXML
     void removeItemBtnClick(MouseEvent event) {
     	order_items.clear();
@@ -358,6 +429,13 @@ public class CustomerController implements Initializable {
 
     }
 
+	/**
+   * Individually loads the items that were present within the receipt to the database
+   * in the "Orders" table, then performing the same functionality that the removeItemBtnClick
+   * above does, as it clears all set information for a new order.
+   * <p>
+   * @param  event  clicking the submitOrder button
+   */
     @FXML
     void submitOrderBtnClick(MouseEvent event) {
     	System.out.println("order button clicked");
