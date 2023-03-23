@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #E51636;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RestockReport">
+   <children>
+      <Button fx:id="back_button" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#GoBack" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <GridPane alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="864.6363257037718" minWidth="10.0" prefWidth="331.39999757877183" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" prefHeight="23.0" prefWidth="51.0">
+                     <children>
+                        <Text fill="#282828" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Refreshed" textAlignment="RIGHT">
+                           <font>
+                              <Font size="7.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="time_refreshed" fill="#303030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT">
+                           <font>
+                              <Font size="7.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="2.5" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="refresh_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#refreshButton" prefHeight="23.0" prefWidth="90.0" text="Refresh">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" GridPane.rowIndex="1">
+               <children>
+                  <TableView fx:id="restock_table" minHeight="-Infinity" prefHeight="330.0">
+                     <columns>
+                        <TableColumn fx:id="col_ingredient" maxWidth="300.0" prefWidth="283.6000061035156" text="Ingredient" />
+                        <TableColumn fx:id="col_qty_curr" maxWidth="200.0" prefWidth="158.00006103515625" text="Quantity" />
+                        <TableColumn fx:id="col_threshold" maxWidth="200.0" prefWidth="157.199951171875" text="Threshold" />
+                     </columns>
+                  </TableView>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
