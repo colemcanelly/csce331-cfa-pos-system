@@ -9,6 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Used to control the report GUI landing page
+ * 
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.3        (the version of the package this class was first added to)
+ */
 public class ReportController {
 	
 	private Stage stage;

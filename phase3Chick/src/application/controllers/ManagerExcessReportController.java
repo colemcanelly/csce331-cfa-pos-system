@@ -23,6 +23,15 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
+/**
+ * ManagerExcessReportController contains the java needed to produce the Excess Report for our POS system. This class will display items that
+ * did not sell more than 10 percent of there inventory over a centain amount of time
+ * 
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.3          (the version of the package this class was first added to)
+ */
 public class ManagerExcessReportController implements Initializable {
 
     private PostgreSQL psql = new PostgreSQL();
@@ -82,7 +91,14 @@ public class ManagerExcessReportController implements Initializable {
 	
 	private String currDateString;
     
-	// Go Back To Home Page
+	
+    /**
+	 * Function to return to the previous fxml file in the project. In this instance it is Report.fxml
+	 *
+	 *
+	 * @param event Action event when a button is pressed
+	 * @since             1.3
+	 */
     @FXML
     void GoBack(ActionEvent event) {
     	try {
@@ -101,7 +117,13 @@ public class ManagerExcessReportController implements Initializable {
     }
 
 
-    // Start Process for Listing Excess Items Based on Date
+    /**
+    * Collects date after the calulate excess button is pressed
+    *
+    *
+    * @param event Action event when a button is pressed
+    * @since             1.3
+    */
     @FXML
     void handleButtonAction(ActionEvent event) {
         if(event.getSource() == calculate_button){
@@ -120,7 +142,15 @@ public class ManagerExcessReportController implements Initializable {
     }
 
 
-
+/**
+ * Creates an observable list to display in the table.
+ *
+ * <p>Use {@link #doMove(int fromFile, int fromRank, int toFile, int toRank)} to move a piece.
+ *
+ * @param date date used for the sql command
+ * @return            obserable list to display in the GUI
+ * @since             1.3
+ */
 public ObservableList<ExcessItem> getExcessItemsList(LocalDate date){
     	
         ObservableList<ExcessItem> Excess_Items_List = FXCollections.observableArrayList();
@@ -141,8 +171,10 @@ public ObservableList<ExcessItem> getExcessItemsList(LocalDate date){
 
 
     /**
-     * This function is implemented whenever the calculate button is clicked on. This updates the Excess Table Based on the date
-     * 
+     * Updates the table with the obserable list created by getExcessItemsList
+     *
+     * @param date date used for sql command to get excess items
+     * @since             1.3
      */
    private void updateExcessTable(LocalDate date){
 	   

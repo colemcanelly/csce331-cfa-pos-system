@@ -16,6 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+/**
+ * Controller used to generate XZ reports for the manager
+ * 
+ * @author Logan Kettle
+ */
 public class XZReportsController {
 		
 	private CFADataBase db = new CFADataBase();

@@ -8,6 +8,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Implements the manager ability to add and remove menu items.
+ * 
+ * @author  Ryan Paul
+ */
 public class ManagerMenuApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

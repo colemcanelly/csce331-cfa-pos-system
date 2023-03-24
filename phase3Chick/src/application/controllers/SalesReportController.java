@@ -23,6 +23,12 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller used to generate sales reports for the manager
+ * 
+ * @author Ryan Paul
+ */
 public class SalesReportController implements Initializable{
     private PostgreSQL psql = new PostgreSQL();
     private CFADataBase db = new CFADataBase();

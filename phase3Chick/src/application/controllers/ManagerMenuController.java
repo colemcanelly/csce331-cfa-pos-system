@@ -19,6 +19,11 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * The controller for the manager's ability to add and remove menu items.
+ * 
+ * @author  Ryan Paul
+ */
 public class ManagerMenuController implements Initializable {
 
     private PostgreSQL psql = new PostgreSQL();

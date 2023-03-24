@@ -7,6 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+/**
+ * Used to generate sales reports for the manager
+ * 
+ * @author Ryan Paul
+ */
 public class SalesReport extends Application {
 
     @Override

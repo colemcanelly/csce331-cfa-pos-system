@@ -1,5 +1,13 @@
 package application.controllers;
 
+
+/**
+ * Excess Item is a class gets and sets necessary items for an Excess Item. Used in ManagerExcessReportController.java
+ * 
+ * @author      Weston Cadena <westoncadena@gmail.com>
+ * @version     1.3                 (current version number of program)
+ * @since       1.3         (the version of the package this class was first added to)
+ */
 public class ExcessItem {
     private String ingredient;
     private String start_quantity;
