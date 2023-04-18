@@ -1,7 +1,8 @@
 -- Remove all previous tables
 DROP TABLE 
-    managers,
-    kiosk,
+    -- managers,
+    -- kiosk,
+    users,
     menu,
     supply,
     recipes,
@@ -11,14 +12,13 @@ DROP TABLE
 
 
 -- This creates the tables we need and fills the with the generated data
-CREATE TABLE managers (
-    manager_id INT PRIMARY KEY,
-    manager_pw VARCHAR(255)
-);
-
-CREATE TABLE kiosk (
-    kiosk_id INT PRIMARY KEY,
-    kiosk_on BOOLEAN
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY, -- Autoincrementing PK
+    permissions INT,            -- {0 => Customer, 1 => Server, 2 => Manager}
+    username VARCHAR(255),
+    user_pw VARCHAR(255),
+    fname VARCHAR(255),
+    lname VARCHAR(255)
 );
 
 CREATE TABLE menu (
@@ -44,22 +44,22 @@ CREATE TABLE recipes (
     FOREIGN KEY (ingredient) REFERENCES supply(ingredient)
 );
 
+-- REMOVE `order_num`
 CREATE TABLE orders (
-    order_id SERIAL PRIMARY KEY,
-    order_num INT,
+    order_id SERIAL PRIMARY KEY,    -- Autoincrementing PK
     order_date DATE,
     order_time TIME,
-    order_total FLOAT,
-    customer_name VARCHAR(255),
-    kiosk_id INT,
-    FOREIGN KEY (kiosk_id) REFERENCES kiosk(kiosk_id)
+    order_total FLOAT,              -- REDUNDANCY
+    customer_fname VARCHAR(255),    -- change "name" -> "fname"
+    order_creator INT,              -- who created the order
+    FOREIGN KEY (order_creator) REFERENCES users(user_id)
 );
 
 CREATE TABLE order_items (
     order_id INT,
     menu_item VARCHAR(255),
     menu_item_quantity INT,
-    food_price FLOAT,
+    food_price FLOAT,               -- REDUNDACY
     PRIMARY KEY (order_id, menu_item),
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (menu_item) REFERENCES menu(menu_item)
@@ -77,8 +77,7 @@ CREATE TABLE daily_inventory (
 );
 
 -- Populate new tables with CSV's
-\copy managers from './csv/managers.csv' CSV
-\copy kiosk from './csv/kiosks.csv' CSV
+\copy users from './csv/users.csv' CSV
 \copy menu from './csv/menu.csv' CSV
 \copy supply from './csv/supply.csv' CSV
 \copy recipes from './csv/recipes.csv' CSV
@@ -87,4 +86,5 @@ CREATE TABLE daily_inventory (
 \copy daily_inventory from './csv/daily_inventory.csv' CSV
 
 -- Set the sequence value for entering new data
- SELECT setval('orders_order_id_seq', (SELECT max(order_id) FROM orders));
+SELECT setval('orders_order_id_seq', (SELECT max(order_id) FROM orders));
+SELECT setval('users_user_id_seq', (SELECT max(user_id) FROM users));

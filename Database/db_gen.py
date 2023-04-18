@@ -2,16 +2,28 @@ import random,datetime
 
 #########################################################################################
 ##      CLASS DEFINITIONS
-class Kiosk:
-    def __init__(self, line: str) -> None:
-        atts = iter(line.split(','))
-        self.kiosk_id: int = int(next(atts))   # PK
-        self.kiosk_on: bool = next(atts).lower() in ['true', '1', 'on', 't', 'y']
-        self.curr_order_num: int = 0
+class Table:
     def __repr__(self):
         return ",".join([str(val) for val in self.__dict__.values()])
 
-class MenuItem:
+class User(Table):
+    def __init__(self, line: str) -> None:
+        atts = iter(line.split(','))
+        self.user_id: int = int(next(atts))   # PK
+        self.permissions: int = int(next(atts))
+        self.username: str = next(atts)
+        self.user_pw: str = next(atts)
+        self.fname: str = next(atts)
+        self.lname: str = next(atts)
+
+# class Kiosk(Table):
+#     def __init__(self, line: str) -> None:
+#         atts = iter(line.split(','))
+#         self.kiosk_id: int = int(next(atts))   # PK
+#         self.kiosk_on: bool = next(atts).lower() in ['true', '1', 'on', 't', 'y']
+#         self.curr_order_num: int = 0
+
+class MenuItem(Table):
     def __init__(self, line: str) -> None:
         atts = iter(line.split(','))
         self.item_name: str = next(atts)       # PK
@@ -19,19 +31,15 @@ class MenuItem:
         self.combo: bool = next(atts).lower() in ['true', '1', 'on', 't', 'y']
         self.price: float = float(next(atts))
         self.img: str = next(atts)
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
 
-class Supply:
+class Supply(Table):
     def __init__(self, line: str) -> None:
         atts = iter(line.split(','))
         self.ingredient: str = next(atts)      # PK
         self.threshold: float = float(next(atts))
         self.restock_quantity: float = float(next(atts))
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
 
-class Inventory:
+class Inventory(Table):
     def __init__(
             self, 
             date: str, 
@@ -47,11 +55,8 @@ class Inventory:
         self.qty_eod: float = qty_eod
         self.qty_new: float = qty_new
         self.qty_sold: float = qty_sold
-    
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
 
-class Recipe:
+class Recipe(Table):
     def __init__(self, line: str) -> None:
         atts = iter(line.split(','))
         self.menu_item: str = next(atts)       # PK
@@ -65,29 +70,24 @@ class Recipe:
         if ((onhand.qty_sod + onhand.qty_new - onhand.qty_sold) < supply.threshold):
             onhand.qty_new += supply.restock_quantity
     
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
-
-
 # Order will automatically create `ORDER` and `ORDER_ITEMS`,
 #   which updates the `INVENTORY` through use of the recipe
-class Order:
+class Order(Table):
     def __init__(self, date: str, time: str, inv_today: list[Inventory]) -> None:
         global Orders, OrderItems, order_count
         # hopefully this gets be reference, idk
         # kiosk = next(filter(lambda k : k.kiosk_id == kiosk_id, Kiosks))
-        kiosk:  Kiosk   = random.choice(Kiosks) # random kiosk
-        kiosk.curr_order_num += 1
-        assert (kiosk.curr_order_num < 1000), f"Order Number overflow: #{kiosk.curr_order_num}"
+        user:  User   = random.choice(Users) # random user
+        # assert (kiosk.curr_order_num < 1000), f"Order Number overflow: #{kiosk.curr_order_num}"
         
         # Attributes
         self.order_id:      int = order_count        # PK
-        self.order_num:     int = (kiosk.kiosk_id * 1000) + kiosk.curr_order_num
+        # self.order_num:     int = (kiosk.kiosk_id * 1000) + kiosk.curr_order_num
         self.order_date:    str = date
         self.order_time:    str = time
         self.order_total:  float   = 0.0
-        self.customer_name:   str = random.choice(NAMES)  # random customer
-        self.kiosk_id:      int = kiosk.kiosk_id
+        self.customer_fname:   str = user.fname if (user.permissions == 0) else random.choice(Users).fname
+        self.order_creator:      int = user.user_id
 
         # Generate random order
         items:  dict[str, int] = {}
@@ -104,10 +104,7 @@ class Order:
         order_count += 1
         OrderItems.extend(list(map(lambda entry : OrderItem(self.order_id, entry, inv_today), items.items())))
 
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
-
-class OrderItem:
+class OrderItem(Table):
     def __init__(self, id: int, order_entry: tuple[str,int], inv_today: list[Inventory]) -> None:
         self.order_id: int = id
         self.menu_item: str = str(order_entry[0])
@@ -115,15 +112,13 @@ class OrderItem:
         self.price: float = next(filter(lambda itm : itm.item_name == self.menu_item, MENU)).price
 
         for recipe in filter(lambda x : x.menu_item == self.menu_item, RECIPES):
-            recipe.updateInventory(self.menu_item_qty, inv_today), 
+            recipe.updateInventory(self.menu_item_qty, inv_today)
             
-    def __repr__(self):
-        return ",".join([str(val) for val in self.__dict__.values()])
-
 
 #########################################################################################
 ##      GLOBAL VARS
-Kiosks:     list[Kiosk]
+Users:      list[User]
+# Kiosks:     list[Kiosk]
 MENU:       list[MenuItem]
 RECIPES:    list[Recipe]
 SUPPLIES:   list[Supply]
@@ -143,13 +138,15 @@ def fetchTable(filename: str, constructor) -> list:
     return list(map(lambda line : constructor(line.replace('\n', '')), data))
 
 def loadTables(date: datetime.date) -> None:
-    kiosk_file: str = "./csv/kiosks.csv"
+    # kiosk_file: str = "./csv/kiosks.csv"
+    user_file: str = "./csv/users.csv"
     menu_file: str = "./csv/menu.csv"
     recipe_file: str = "./csv/recipes.csv"
     supply_file: str = "./csv/supply.csv"
 
-    global Kiosks, MENU, RECIPES, SUPPLIES, InvTempl
-    Kiosks      = fetchTable(kiosk_file, lambda line : Kiosk(line))
+    global Users, MENU, RECIPES, SUPPLIES, InvTempl #, Kiosks
+    # Kiosks      = fetchTable(kiosk_file, lambda line : Kiosk(line))
+    Users      = fetchTable(user_file, lambda line : User(line))
     MENU        = fetchTable(menu_file, lambda line : MenuItem(line))
     RECIPES     = fetchTable(recipe_file, lambda line : Recipe(line))
     SUPPLIES    = fetchTable(supply_file, lambda line : Supply(line))
@@ -178,9 +175,9 @@ def unloadTables() -> None:
 ##      SIMULATION METHODS
 
 def preOpening(date: datetime.date) -> list[Inventory]:
-    global Kiosks, InvTempl, InvHistory
-    for kiosk in Kiosks:
-        kiosk.curr_order_num = 0
+    global InvTempl, InvHistory #, Kiosks
+    # for kiosk in Kiosks:
+    #     kiosk.curr_order_num = 0
     
     inv_today: list[Inventory] = []
     inv_yesterday: list[Inventory] = InvHistory[-1] if (len(InvHistory) > 0) else InvTempl
@@ -227,7 +224,6 @@ def simulate(start_date: datetime.date, num_weeks: int, min_profit: float) -> No
     weekly_profit: float = min_profit / num_weeks
     date: datetime.date = start_date
     profit: float = 0.0
-    order_id = 0
 
     print("\tRunning Simulation")
     for _ in range(num_weeks):
@@ -238,8 +234,8 @@ def simulate(start_date: datetime.date, num_weeks: int, min_profit: float) -> No
 
 def main() -> None:   
     start_date: datetime.date = datetime.date(2022, 2, 21)
-    num_weeks = 52
-    profit = 1000000.00
+    num_weeks = 100
+    profit = 1900000.00
     print("Beginning simulation . . . ")
     print(f"\tBegin on {start_date},\n\tSimulate for {num_weeks} weeks,\n\tGenerate a minimum profit of ${profit}")
     confirm = input("Press enter to confirm: ")
